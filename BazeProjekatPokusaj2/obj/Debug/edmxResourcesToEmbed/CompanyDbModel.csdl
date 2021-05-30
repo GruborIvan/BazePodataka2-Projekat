@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="CompanyDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="CompanyDbModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Osobas" EntityType="CompanyDbModel.Osoba" />
+    <EntitySet Name="Kompanije" EntityType="CompanyDbModel.Kompanija" />
+    <EntitySet Name="Lokacije" EntityType="CompanyDbModel.Lokacija" />
+    <AssociationSet Name="DirektorKompanija" Association="CompanyDbModel.DirektorKompanija">
+      <End Role="Direktor" EntitySet="Osobas" />
+      <End Role="Kompanija" EntitySet="Kompanije" />
+    </AssociationSet>
+    <EntitySet Name="Ugovori" EntityType="CompanyDbModel.Ugovor" />
+    <AssociationSet Name="ZaposleniUgovor" Association="CompanyDbModel.ZaposleniUgovor">
+      <End Role="Zaposleni" EntitySet="Osobas" />
+      <End Role="Ugovor" EntitySet="Ugovori" />
+    </AssociationSet>
+    <AssociationSet Name="KompanijaLokacija" Association="CompanyDbModel.KompanijaLokacija">
+      <End EntitySet="Kompanije" Role="Kompanija" />
+      <End EntitySet="Lokacije" Role="Lokacija" />
+    </AssociationSet>
+    <EntitySet Name="UgovoreniProizvodi" EntityType="CompanyDbModel.UgovoreniProizvod" />
+    <AssociationSet Name="UgovoreniProizvodKlijent" Association="CompanyDbModel.UgovoreniProizvodKlijent">
+      <End Role="UgovoreniProizvod" EntitySet="UgovoreniProizvodi" />
+      <End Role="Klijent" EntitySet="Osobas" />
+    </AssociationSet>
+    <AssociationSet Name="UgovoreniProizvodKonsultant" Association="CompanyDbModel.UgovoreniProizvodKonsultant">
+      <End Role="UgovoreniProizvod" EntitySet="UgovoreniProizvodi" />
+      <End Role="Konsultant" EntitySet="Osobas" />
+    </AssociationSet>
+    <AssociationSet Name="UgovoreniProizvodDeveloper" Association="CompanyDbModel.UgovoreniProizvodDeveloper">
+      <End Role="UgovoreniProizvod" EntitySet="UgovoreniProizvodi" />
+      <End Role="Developer" EntitySet="Osobas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Osoba">
+    <Key>
+      <PropertyRef Name="JMBG" />
+    </Key>
+    <Property Name="JMBG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" Nullable="false" />
+    <Property Name="Prezime" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Klijent" BaseType="CompanyDbModel.Osoba">
+    <Property Name="NazivKlijenta" Type="String" Nullable="false" />
+    <NavigationProperty Name="UgovoreniProizvodi" Relationship="CompanyDbModel.UgovoreniProizvodKlijent" FromRole="Klijent" ToRole="UgovoreniProizvod" />
+  </EntityType>
+  <EntityType Name="Zaposleni" BaseType="CompanyDbModel.Osoba">
+    <Property Name="RadniStaz" Type="String" Nullable="false" />
+    <NavigationProperty Name="Ugovor" Relationship="CompanyDbModel.ZaposleniUgovor" FromRole="Zaposleni" ToRole="Ugovor" />
+    <Property Name="UgovorUID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Direktor" BaseType="CompanyDbModel.Zaposleni">
+    <NavigationProperty Name="Kompanija" Relationship="CompanyDbModel.DirektorKompanija" FromRole="Direktor" ToRole="Kompanija" />
+  </EntityType>
+  <EntityType Name="Developer" BaseType="CompanyDbModel.Zaposleni">
+    <NavigationProperty Name="UgovoreniProizvodi" Relationship="CompanyDbModel.UgovoreniProizvodDeveloper" FromRole="Developer" ToRole="UgovoreniProizvod" />
+  </EntityType>
+  <EntityType Name="Konsultant" BaseType="CompanyDbModel.Zaposleni">
+    <NavigationProperty Name="UgovoreniProizvods" Relationship="CompanyDbModel.UgovoreniProizvodKonsultant" FromRole="Konsultant" ToRole="UgovoreniProizvod" />
+  </EntityType>
+  <EntityType Name="Kompanija">
+    <Key>
+      <PropertyRef Name="KID" />
+    </Key>
+    <Property Name="KID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Direktor" Relationship="CompanyDbModel.DirektorKompanija" FromRole="Kompanija" ToRole="Direktor" />
+    <Property Name="NazivKompanije" Type="String" Nullable="false" />
+    <Property Name="GodinaOsnivanja" Type="String" Nullable="false" />
+    <NavigationProperty Name="Lokacija" Relationship="CompanyDbModel.KompanijaLokacija" FromRole="Kompanija" ToRole="Lokacija" />
+  </EntityType>
+  <EntityType Name="Lokacija">
+    <Key>
+      <PropertyRef Name="LokID" />
+    </Key>
+    <Property Name="LokID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KompanijaKID" Type="Int32" Nullable="false" />
+    <Property Name="Grad" Type="String" Nullable="false" />
+    <Property Name="Ulica" Type="String" Nullable="false" />
+    <Property Name="PostanskiBroj" Type="String" Nullable="false" />
+    <NavigationProperty Name="Kompanija" Relationship="CompanyDbModel.KompanijaLokacija" FromRole="Lokacija" ToRole="Kompanija" />
+  </EntityType>
+  <Association Name="DirektorKompanija">
+    <End Type="CompanyDbModel.Direktor" Role="Direktor" Multiplicity="1" />
+    <End Type="CompanyDbModel.Kompanija" Role="Kompanija" Multiplicity="1" />
+  </Association>
+  <EntityType Name="Ugovor">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Zaposleni" Relationship="CompanyDbModel.ZaposleniUgovor" FromRole="Ugovor" ToRole="Zaposleni" />
+    <Property Name="TrajanjeUgovora" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="ZaposleniUgovor">
+    <End Type="CompanyDbModel.Zaposleni" Role="Zaposleni" Multiplicity="*" />
+    <End Type="CompanyDbModel.Ugovor" Role="Ugovor" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Ugovor">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Zaposleni">
+        <PropertyRef Name="UgovorUID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KompanijaLokacija">
+    <End Type="CompanyDbModel.Kompanija" Multiplicity="0..1" Role="Kompanija" />
+    <End Type="CompanyDbModel.Lokacija" Multiplicity="1" Role="Lokacija" />
+  </Association>
+  <EntityType Name="UgovoreniProizvod">
+    <Key>
+      <PropertyRef Name="PRID" />
+    </Key>
+    <NavigationProperty Name="Klijent" Relationship="CompanyDbModel.UgovoreniProizvodKlijent" FromRole="UgovoreniProizvod" ToRole="Klijent" />
+    <NavigationProperty Name="Konsultant" Relationship="CompanyDbModel.UgovoreniProizvodKonsultant" FromRole="UgovoreniProizvod" ToRole="Konsultant" />
+    <NavigationProperty Name="Developer" Relationship="CompanyDbModel.UgovoreniProizvodDeveloper" FromRole="UgovoreniProizvod" ToRole="Developer" />
+    <Property Name="OpisProizvoda" Type="String" Nullable="false" />
+    <Property Name="VrednostProizvoda" Type="String" Nullable="false" />
+    <Property Name="PRID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="UgovoreniProizvodKlijent">
+    <End Type="CompanyDbModel.UgovoreniProizvod" Role="UgovoreniProizvod" Multiplicity="*" />
+    <End Type="CompanyDbModel.Klijent" Role="Klijent" Multiplicity="1" />
+  </Association>
+  <Association Name="UgovoreniProizvodKonsultant">
+    <End Type="CompanyDbModel.UgovoreniProizvod" Role="UgovoreniProizvod" Multiplicity="*" />
+    <End Type="CompanyDbModel.Konsultant" Role="Konsultant" Multiplicity="1" />
+  </Association>
+  <Association Name="UgovoreniProizvodDeveloper">
+    <End Type="CompanyDbModel.UgovoreniProizvod" Role="UgovoreniProizvod" Multiplicity="*" />
+    <End Type="CompanyDbModel.Developer" Role="Developer" Multiplicity="1" />
+  </Association>
+</Schema>

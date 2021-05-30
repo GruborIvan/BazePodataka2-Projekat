@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b1f69466f5ad4eb3a22c52e22dfd1db7" Name="Diagram1" ZoomLevel="71" >
+        <EntityTypeShape EntityType="CompanyDbModel.Osoba" Width="1.5" PointX="1.375" PointY="0.5" />
+        <EntityTypeShape EntityType="CompanyDbModel.Klijent" Width="1.5" PointX="0.5" PointY="2.75" />
+        <InheritanceConnector EntityType="CompanyDbModel.Klijent" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.125" PointY="2.09568359375" />
+          <ConnectorPoint PointX="2.125" PointY="2.3994232732802554" />
+          <ConnectorPoint PointX="1.25" PointY="2.3994232732802554" />
+          <ConnectorPoint PointX="1.25" PointY="2.75" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="CompanyDbModel.Zaposleni" Width="1.5" PointX="3.25" PointY="2.75" />
+        <InheritanceConnector EntityType="CompanyDbModel.Zaposleni" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="CompanyDbModel.Direktor" Width="1.5" PointX="7.875" PointY="0.625" />
+        <InheritanceConnector EntityType="CompanyDbModel.Direktor" />
+        <EntityTypeShape EntityType="CompanyDbModel.Developer" Width="1.5" PointX="7.875" PointY="2.375" />
+        <InheritanceConnector EntityType="CompanyDbModel.Developer" />
+        <EntityTypeShape EntityType="CompanyDbModel.Konsultant" Width="1.5" PointX="7.875" PointY="4" />
+        <InheritanceConnector EntityType="CompanyDbModel.Konsultant" />
+        <EntityTypeShape EntityType="CompanyDbModel.Kompanija" Width="1.5" PointX="11" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyDbModel.Lokacija" Width="1.5" PointX="11" PointY="4.125" />
+        <AssociationConnector Association="CompanyDbModel.DirektorKompanija" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="CompanyDbModel.Ugovor" Width="1.5" PointX="1.125" PointY="6.375" />
+        <AssociationConnector Association="CompanyDbModel.ZaposleniUgovor" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="CompanyDbModel.KompanijaLokacija" />
+        <EntityTypeShape EntityType="CompanyDbModel.UgovoreniProizvod" Width="1.875" PointX="4.375" PointY="5.125" FillColor="255, 128, 0" />
+        <AssociationConnector Association="CompanyDbModel.UgovoreniProizvodKlijent" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="CompanyDbModel.UgovoreniProizvodKonsultant" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="CompanyDbModel.UgovoreniProizvodDeveloper" ManuallyRouted="false" >
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

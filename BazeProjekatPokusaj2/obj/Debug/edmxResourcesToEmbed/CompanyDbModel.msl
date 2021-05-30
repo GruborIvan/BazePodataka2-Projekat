@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CompanyDbModelStoreContainer" CdmEntityContainer="CompanyDbModelContainer">
+    <EntitySetMapping Name="Osobas">
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Osoba)">
+        <MappingFragment StoreEntitySet="Osobas">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Zaposleni)">
+        <MappingFragment StoreEntitySet="Osobas_Zaposleni">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="RadniStaz" ColumnName="RadniStaz" />
+          <ScalarProperty Name="UgovorUID" ColumnName="UgovorUID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Direktor)">
+        <MappingFragment StoreEntitySet="Osobas_Direktor">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Klijent)">
+        <MappingFragment StoreEntitySet="Osobas_Klijent">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="NazivKlijenta" ColumnName="NazivKlijenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Konsultant)">
+        <MappingFragment StoreEntitySet="Osobas_Konsultant">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Developer)">
+        <MappingFragment StoreEntitySet="Osobas_Developer">
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kompanije">
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Kompanija)">
+        <MappingFragment StoreEntitySet="Kompanije">
+          <ScalarProperty Name="KID" ColumnName="KID" />
+          <ScalarProperty Name="NazivKompanije" ColumnName="NazivKompanije" />
+          <ScalarProperty Name="GodinaOsnivanja" ColumnName="GodinaOsnivanja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lokacije">
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Lokacija)">
+        <MappingFragment StoreEntitySet="Lokacije">
+          <ScalarProperty Name="LokID" ColumnName="LokID" />
+          <ScalarProperty Name="KompanijaKID" ColumnName="KompanijaKID" />
+          <ScalarProperty Name="Grad" ColumnName="Grad" />
+          <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+          <ScalarProperty Name="PostanskiBroj" ColumnName="PostanskiBroj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ugovori">
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.Ugovor)">
+        <MappingFragment StoreEntitySet="Ugovori">
+          <ScalarProperty Name="UID" ColumnName="UID" />
+          <ScalarProperty Name="TrajanjeUgovora" ColumnName="TrajanjeUgovora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UgovoreniProizvodi">
+      <EntityTypeMapping TypeName="IsTypeOf(CompanyDbModel.UgovoreniProizvod)">
+        <MappingFragment StoreEntitySet="UgovoreniProizvodi">
+          <ScalarProperty Name="PRID" ColumnName="PRID" />
+          <ScalarProperty Name="OpisProizvoda" ColumnName="OpisProizvoda" />
+          <ScalarProperty Name="VrednostProizvoda" ColumnName="VrednostProizvoda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DirektorKompanija" TypeName="CompanyDbModel.DirektorKompanija" StoreEntitySet="Osobas_Direktor">
+      <EndProperty Name="Kompanija">
+        <ScalarProperty Name="KID" ColumnName="Kompanija_KID" />
+      </EndProperty>
+      <EndProperty Name="Direktor">
+        <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KompanijaLokacija" TypeName="CompanyDbModel.KompanijaLokacija" StoreEntitySet="Kompanije">
+      <EndProperty Name="Lokacija">
+        <ScalarProperty Name="LokID" ColumnName="Lokacija_LokID" />
+      </EndProperty>
+      <EndProperty Name="Kompanija">
+        <ScalarProperty Name="KID" ColumnName="KID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UgovoreniProizvodKlijent" TypeName="CompanyDbModel.UgovoreniProizvodKlijent" StoreEntitySet="UgovoreniProizvodi">
+      <EndProperty Name="Klijent">
+        <ScalarProperty Name="JMBG" ColumnName="Klijent_JMBG" />
+      </EndProperty>
+      <EndProperty Name="UgovoreniProizvod">
+        <ScalarProperty Name="PRID" ColumnName="PRID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UgovoreniProizvodKonsultant" TypeName="CompanyDbModel.UgovoreniProizvodKonsultant" StoreEntitySet="UgovoreniProizvodi">
+      <EndProperty Name="Konsultant">
+        <ScalarProperty Name="JMBG" ColumnName="Konsultant_JMBG" />
+      </EndProperty>
+      <EndProperty Name="UgovoreniProizvod">
+        <ScalarProperty Name="PRID" ColumnName="PRID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UgovoreniProizvodDeveloper" TypeName="CompanyDbModel.UgovoreniProizvodDeveloper" StoreEntitySet="UgovoreniProizvodi">
+      <EndProperty Name="Developer">
+        <ScalarProperty Name="JMBG" ColumnName="Developer_JMBG" />
+      </EndProperty>
+      <EndProperty Name="UgovoreniProizvod">
+        <ScalarProperty Name="PRID" ColumnName="PRID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
