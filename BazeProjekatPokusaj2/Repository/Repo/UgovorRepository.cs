@@ -47,8 +47,12 @@ namespace BazeProjekatPokusaj2.Repository.Repo
                     }
                     else if (z.OsobaType.Equals("KONSULTANT"))
                     {
-
+                        // DELETE SVE IZ PRODUCTS TAMO...
+                        // PUCACE OVDE ZATO!!
+                        db.Osobas.Remove(o);
+                        db.SaveChanges();
                     }
+
                 }
             }
 
