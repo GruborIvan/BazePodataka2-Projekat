@@ -1,5 +1,6 @@
 ﻿using BazeProjekatPokusaj2.Repository;
 using BazeProjekatPokusaj2.Repository.Repo;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,8 @@ namespace BazeProjekatPokusaj2.CrudWindows
     {
         public BindingList<Osoba> Direktori { get; set; }
 
+        public BindableCollection<Ugovor> Ugovori { get; set; }
+
         private IDirektorRepository _repository;
 
         private int editId = -1;
@@ -29,6 +32,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
         {
             InitializeComponent();
             _repository = new DirektorRepository();
+            Ugovori = new BindableCollection<Ugovor>(_repository.GetUgovori());
             LoadAllDirektors();
         }
 
@@ -36,6 +40,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
         {
             Direktori = new BindingList<Osoba>(_repository.GetDirektori().ToList());
             DirektoriList.ItemsSource = Direktori;
+            UgovorComboBox.ItemsSource = Ugovori;
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
@@ -49,6 +54,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
             ImeTextBox.Text = String.Empty;
             PrezimeTextBox.Text = String.Empty;
             RadniStazTextBox.Text = String.Empty;
+            UgovorComboBox.SelectedItem = null;
             this.editId = -1;
         }
 
@@ -75,6 +81,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 ImeTextBox.Text = dir.Ime;
                 PrezimeTextBox.Text = dir.Prezime;
                 RadniStazTextBox.Text = dir.RadniStaz;
+                UgovorComboBox.SelectedItem = dir.Ugovor;
                 this.editId = dir.OID;
             }
         }
@@ -89,6 +96,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 dir.Ime = ImeTextBox.Text;
                 dir.Prezime = PrezimeTextBox.Text;
                 dir.RadniStaz = RadniStazTextBox.Text;
+                dir.UgovorUID = ((Ugovor)UgovorComboBox.SelectedItem).UID;
                 _repository.AddDirektor(dir);
             }
             else
@@ -98,6 +106,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 dir.Ime = ImeTextBox.Text;
                 dir.Prezime = PrezimeTextBox.Text;
                 dir.RadniStaz = RadniStazTextBox.Text;
+                dir.UgovorUID = ((Ugovor)UgovorComboBox.SelectedItem).UID;
                 _repository.UpdateDirektor(dir);
             }
             LoadAllDirektors();

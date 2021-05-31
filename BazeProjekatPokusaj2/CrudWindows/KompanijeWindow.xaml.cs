@@ -1,5 +1,6 @@
 ﻿using BazeProjekatPokusaj2.Repository.Interfaces;
 using BazeProjekatPokusaj2.Repository.Repo;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,7 +25,11 @@ namespace BazeProjekatPokusaj2.CrudWindows
     public partial class KompanijeWindow : Window
     {
         public static BindingList<Kompanija> Kompanije { get; set; }
-        private int editId { get; set; }
+
+        public BindableCollection<Lokacija> Lokacije { get; set; }
+        public BindableCollection<Osoba> Direktori { get; set; }
+
+        private int editId = -1;
         
         private IKompanijaRepository _repository;
 
@@ -32,7 +38,8 @@ namespace BazeProjekatPokusaj2.CrudWindows
         {
             InitializeComponent();
             _repository = new KompanijaRepository();
-            this.editId = -1;
+            Lokacije = new BindableCollection<Lokacija>(_repository.GetLokacije().ToList());
+            Direktori = new BindableCollection<Osoba>(_repository.GetDirektori().ToList());
             LoadAllKompanije();
         }
 
@@ -40,31 +47,55 @@ namespace BazeProjekatPokusaj2.CrudWindows
         {
             Kompanije = new BindingList<Kompanija>(_repository.GetKompanije().ToList());
             KompanijeList.ItemsSource = Kompanije;
+            LokacijeComboBox.ItemsSource = Lokacije;
+            DirektoriComboBox.ItemsSource = Direktori;
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            Kompanija kompanija;
             string naziv = NazivTextBox.Text;
             string godOsnivanja = GodOsnivanjaTextBox.Text;
-            string lokacija = LokacijaTextBox.Text;
+            Lokacija lok = (Lokacija)LokacijeComboBox.SelectedItem;
+            Direktor dir = (Direktor)DirektoriComboBox.SelectedItem;
+          
+            if (this.editId == -1)
+            {
+                kompanija = new Kompanija() { NazivKompanije = naziv, GodinaOsnivanja = godOsnivanja, Lokacija = lok, Direktor = dir };
+                _repository.AddKompanija(kompanija);
+            }
+            else
+            {
+                kompanija = _repository.GetKompanijaById(this.editId);
+                kompanija.NazivKompanije = naziv;
+                kompanija.GodinaOsnivanja = godOsnivanja;
+                kompanija.Lokacija = lok;
+                kompanija.Direktor = dir;
+                _repository.UpdateKompanija(kompanija);
+            }
+            
+            LoadAllKompanije();
+            ClearForm();
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.editId = -1;
-            NazivTextBox.Text = String.Empty;
-            GodOsnivanjaTextBox.Text = String.Empty;
-            LokacijaTextBox.Text = String.Empty;
+            ClearForm();
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
             var kompanija = ((FrameworkElement)sender).DataContext as Kompanija;
+            NazivTextBox.Text = kompanija.NazivKompanije;
+            GodOsnivanjaTextBox.Text = kompanija.GodinaOsnivanja;
+            LokacijeComboBox.SelectedItem = kompanija.Lokacija;
+            DirektoriComboBox.SelectedItem = kompanija.Direktor;
+            this.editId = kompanija.KID;
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure that you want to delete this record?", "Kompanija", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (System.Windows.MessageBox.Show("Are you sure that you want to delete this record?", "Kompanija", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 var komp = ((FrameworkElement)sender).DataContext as Kompanija;
                 if (komp != null)
@@ -73,6 +104,15 @@ namespace BazeProjekatPokusaj2.CrudWindows
                     LoadAllKompanije();
                 }
             }
+        }
+
+        private void ClearForm()
+        {
+            this.editId = -1;
+            NazivTextBox.Text = String.Empty;
+            GodOsnivanjaTextBox.Text = String.Empty;
+            LokacijeComboBox.SelectedItem = null;
+            DirektoriComboBox.SelectedItem = null;
         }
     }
 }

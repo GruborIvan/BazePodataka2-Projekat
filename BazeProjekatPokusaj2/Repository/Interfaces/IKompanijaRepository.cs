@@ -13,5 +13,8 @@ namespace BazeProjekatPokusaj2.Repository.Interfaces
         void AddKompanija(Kompanija kompanija);
         void UpdateKompanija(Kompanija kompanija);
         void DeleteKompanija(Kompanija kompanija);
+
+        IEnumerable<Lokacija> GetLokacije();
+        IEnumerable<Osoba> GetDirektori();
     }
 }

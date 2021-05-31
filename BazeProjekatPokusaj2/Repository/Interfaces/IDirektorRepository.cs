@@ -13,5 +13,6 @@ namespace BazeProjekatPokusaj2.Repository
         void AddDirektor(Direktor direktor);
         void UpdateDirektor(Direktor direktor);
         void DeleteDirektor(Direktor direktor);
+        IEnumerable<Ugovor> GetUgovori();
     }
 }

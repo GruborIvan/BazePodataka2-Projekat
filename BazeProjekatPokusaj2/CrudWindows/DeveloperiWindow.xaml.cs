@@ -1,5 +1,6 @@
 ﻿using BazeProjekatPokusaj2.Repository.Interfaces;
 using BazeProjekatPokusaj2.Repository.Repo;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,10 +26,14 @@ namespace BazeProjekatPokusaj2.CrudWindows
         public BindingList<Osoba> Developeri { get; set; }
         private int editId = -1;
         private IDeveloperRepository _repository;
+
+        public BindableCollection<Ugovor> Ugovori { get; set; }
+
         public DeveloperiWindow()
         {
             InitializeComponent();
             _repository = new DeveloperRepository();
+            Ugovori = new BindableCollection<Ugovor>(_repository.GetUgovori());
             LoadAllDevelopers();
         }
 
@@ -36,6 +41,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
         {
             Developeri = new BindingList<Osoba>(_repository.GetDeveloperi().ToList());
             DeveloperiList.ItemsSource = Developeri;
+            UgovorComboBox.ItemsSource = Ugovori;
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -50,6 +56,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 developer.RadniStaz = RadniStazTextBox.Text;
                 developer.UgovorUID = 3;
                 developer.PreferiranaTehnologija = TehnologijeTextBox.Text;
+                developer.UgovorUID = ((Ugovor)UgovorComboBox.SelectedItem).UID;
                 _repository.AddDeveloper(developer);
             }
             else
@@ -60,6 +67,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 developer.Prezime = PrezimeTextBox.Text;
                 developer.RadniStaz = RadniStazTextBox.Text;
                 developer.PreferiranaTehnologija = TehnologijeTextBox.Text;
+                developer.UgovorUID = ((Ugovor)UgovorComboBox.SelectedItem).UID;
                 _repository.UpdateDeveloper(developer);
             }
             LoadAllDevelopers();
@@ -78,6 +86,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
             PrezimeTextBox.Text = String.Empty;
             RadniStazTextBox.Text = String.Empty;
             TehnologijeTextBox.Text = String.Empty;
+            UgovorComboBox.SelectedItem = null;
             this.editId = -1;
         }
 
@@ -92,6 +101,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 PrezimeTextBox.Text = dev.Prezime;
                 RadniStazTextBox.Text = dev.RadniStaz;
                 TehnologijeTextBox.Text = dev.PreferiranaTehnologija;
+                UgovorComboBox.SelectedItem = dev.Ugovor;
                 this.editId = dev.OID;
             }
         }

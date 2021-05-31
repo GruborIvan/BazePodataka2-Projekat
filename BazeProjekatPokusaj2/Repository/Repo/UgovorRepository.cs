@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,8 +27,31 @@ namespace BazeProjekatPokusaj2.Repository.Repo
 
         public void DeleteUgovor(Ugovor ugovor)
         {
-            db.Ugovori.Remove(ugovor);
-            db.SaveChanges();
+            List<Osoba> osobe = db.Osobas.Where(x => x.OsobaType == "DEVELOPER" || x.OsobaType == "DIREKTOR" || x.OsobaType == "KONSULTANT").ToList();
+            foreach (Osoba o in osobe)
+            {
+                Zaposleni z = o as Zaposleni;
+
+                if (z.UgovorUID == ugovor.UID)
+                {
+                    if (z.OsobaType.Equals("DEVELOPER"))
+                    {
+                        db.Osobas.Remove(o);
+                        db.SaveChanges();
+                    }
+                    else if (z.OsobaType.Equals("DIREKTOR"))
+                    {
+                        IDirektorRepository rep = new DirektorRepository();
+                        Direktor dix = (Direktor)db.Osobas.Find(z.OID);
+                        rep.DeleteDirektor(dix);
+                    }
+                    else if (z.OsobaType.Equals("KONSULTANT"))
+                    {
+
+                    }
+                }
+            }
+
         }
 
         public Ugovor GetUgovorById(int id)

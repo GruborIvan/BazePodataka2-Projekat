@@ -41,6 +41,11 @@ namespace BazeProjekatPokusaj2.Repository.Repo
             return db.Osobas.Where(x => x.OsobaType == "DEVELOPER");
         }
 
+        public IEnumerable<Ugovor> GetUgovori()
+        {
+            return db.Ugovori;
+        }
+
         public void UpdateDeveloper(Developer developer)
         {
             try
@@ -52,5 +57,7 @@ namespace BazeProjekatPokusaj2.Repository.Repo
                 Trace.TraceInformation(ce.Message);
             }
         }
+
+
     }
 }

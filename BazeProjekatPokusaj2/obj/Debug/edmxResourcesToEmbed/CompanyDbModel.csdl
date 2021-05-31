@@ -27,8 +27,8 @@
       <End Role="Developer" EntitySet="Osobas" />
     </AssociationSet>
     <AssociationSet Name="DirektorKompanija" Association="CompanyDbModel.DirektorKompanija">
-      <End Role="Direktor" EntitySet="Osobas" />
-      <End Role="Kompanija" EntitySet="Kompanije" />
+      <End EntitySet="Osobas" Role="Direktor" />
+      <End EntitySet="Kompanije" Role="Kompanija" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Osoba" Abstract="false">
@@ -129,7 +129,7 @@
     <End Type="CompanyDbModel.Developer" Role="Developer" Multiplicity="1" />
   </Association>
   <Association Name="DirektorKompanija">
-    <End Type="CompanyDbModel.Direktor" Role="Direktor" Multiplicity="1" />
-    <End Type="CompanyDbModel.Kompanija" Role="Kompanija" Multiplicity="0..1" />
+    <End Type="CompanyDbModel.Direktor" Multiplicity="1" Role="Direktor" />
+    <End Type="CompanyDbModel.Kompanija" Multiplicity="0..1" Role="Kompanija" />
   </Association>
 </Schema>

@@ -32,3 +32,16 @@ D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\Klije
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\KompanijeWindow.baml
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\KonsultantiWindow.baml
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\LokacijeWindow.baml
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\BazeProjekatPokusaj2.csprojAssemblyReference.cache
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Core.dll
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Platform.Core.dll
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Platform.dll
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Microsoft.Xaml.Behaviors.dll
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Core.pdb
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Core.xml
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Platform.pdb
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Platform.xml
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Platform.Core.pdb
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Caliburn.Micro.Platform.Core.xml
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\bin\Debug\Microsoft.Xaml.Behaviors.xml

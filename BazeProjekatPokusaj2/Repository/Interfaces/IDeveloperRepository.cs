@@ -13,5 +13,7 @@ namespace BazeProjekatPokusaj2.Repository.Interfaces
         void AddDeveloper(Developer developer);
         void UpdateDeveloper(Developer developer);
         void DeleteDeveloper(Developer developer);
+
+        IEnumerable<Ugovor> GetUgovori();
     }
 }

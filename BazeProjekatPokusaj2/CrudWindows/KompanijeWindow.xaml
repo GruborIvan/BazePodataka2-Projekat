@@ -9,31 +9,40 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox>
-                <Grid Height="150">
+                <Grid Height="160">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="220"/>
                         <ColumnDefinition Width="220"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Naziv kompanije: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="10,10,0,10" RenderTransformOrigin="0.54,0.853" Width="201"/>
+
+                    <Label Content="Naziv kompanije: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="10,0,0,0" RenderTransformOrigin="0.54,0.853" Width="201"/>
                     <TextBox Grid.Row="0" Grid.Column="1" x:Name="NazivTextBox" Height="27"  Margin="10,13,-89,10"  Width="220" HorizontalAlignment="Left"/>
-                    <Label Content="Godina osnivanja: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="10,10,0,10" RenderTransformOrigin="0.54,0.853" Width="201"/>
+
+                    <Label Content="Godina osnivanja: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="10,0,0,0" RenderTransformOrigin="0.54,0.853" Width="201"/>
                     <TextBox Grid.Row="1" Grid.Column="1" x:Name="GodOsnivanjaTextBox" Height="27"  Margin="10,13,-89,10"  Width="220" HorizontalAlignment="Left"/>
-                    <Label Content="Lokacija kompanije: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="10,10,0,10" RenderTransformOrigin="0.54,0.853" Width="201"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="LokacijaTextBox" Height="27"  Margin="10,13,-89,10"  Width="220" HorizontalAlignment="Left"/>
-                    <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Margin="436,13,-285,7"  Grid.Column="1" HorizontalAlignment="Left" Width="70" Grid.Row="1" Click="ButtonCancel_Click"/>
+
+                    <Label Content="Lokacija kompanije: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="10,0,0,0" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <ComboBox x:Name="LokacijeComboBox" Grid.Row="2" Grid.Column="1" Margin="10,10,-9,10" ItemsSource="{Binding Lokacije}" SelectedValuePath="LokID" HorizontalAlignment="Left" DisplayMemberPath="Grad" Width="220" />
+
+                    <Label Content="Direktor: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="3" Margin="10,0,0,0" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <ComboBox x:Name="DirektoriComboBox" Grid.Row="3" Grid.Column="1" Margin="10.2,0,-9.4,0" ItemsSource="{Binding Direktori}" SelectedValuePath="OID" HorizontalAlignment="Left" DisplayMemberPath="Ime" Width="220" />
+
+                    <Button x:Name="ButtonCancel" Content="Cancel" Margin="436,13,-285,7"  Grid.Column="1" HorizontalAlignment="Left" Width="70" Grid.Row="1" Click="ButtonCancel_Click"/>
                     <Button x:Name="ButtonSave" Content="Save" RenderTransformOrigin="0.206,0.858" Margin="352,13,-201,7"  Grid.Column="1" Grid.Row="1" Click="ButtonSave_Click"/>
 
-                    <DataGrid x:Name="KompanijeList" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="74,71.2,-269.4,-248.6" Grid.ColumnSpan="2" Grid.Row="2">
+                    <DataGrid x:Name="KompanijeList" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="24,62,-312.4,-240" Grid.ColumnSpan="2" Grid.Row="3">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="KID" Header="Kompanija ID" Binding="{Binding KID}" Width="100"/>
                             <DataGridTextColumn x:Name="Naziv" Header="Naziv kompanije" Binding="{Binding NazivKompanije}" Width="120"/>
                             <DataGridTextColumn x:Name="GodinaOsnivanja" Header="Godina osnivanja" Binding="{Binding GodinaOsnivanja}" Width="110"/>
                             <DataGridTextColumn x:Name="Lokacija" Header="Lokacija kompanije" Binding="{Binding Lokacija.Grad}" Width="120"/>
+                            <DataGridTextColumn x:Name="Direktor" Header="Direktor kompanije" Binding="{Binding Direktor.Ime}" Width="120"/>
                             <DataGridTemplateColumn Width="80">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

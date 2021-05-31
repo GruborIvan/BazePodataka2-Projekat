@@ -100,6 +100,10 @@ namespace BazeProjekatPokusaj2
                 if (ugovor != null)
                 {
                     _repository.DeleteUgovor(ugovor);
+                    CompanyDbModelContainer db = new CompanyDbModelContainer();
+                    Ugovor u = db.Ugovori.Find(ugovor.UID);
+                    db.Ugovori.Remove(u);
+                    db.SaveChanges();
                     LoadAllUgovori();
                 }
             }

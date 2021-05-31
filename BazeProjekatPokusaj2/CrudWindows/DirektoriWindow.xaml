@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BazeProjekatPokusaj2.CrudWindows"
         mc:Ignorable="d"
-        Title="DirektoriWindow" Height="550" Width="800">
+        Title="DirektoriWindow" Height="550" Width="820">
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox>
@@ -34,15 +34,19 @@
                     <Label Content="Ime direktora: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="10,10,0,7" RenderTransformOrigin="0.54,0.853" Width="160"/>
                     <TextBox Grid.Row="3" Grid.Column="1" x:Name="RadniStazTextBox"  Margin="11,10,0,10"  Width="210" HorizontalAlignment="Left"/>
 
-                    <Button x:Name="ButtonCancel" Content="Cancel" Margin="167,8,-218,2"  Grid.Column="2" HorizontalAlignment="Left" Width="70" Grid.Row="1" Click="ButtonCancel_Click" />
+                    <Label Content="Ugovor: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="10,10,0,7" RenderTransformOrigin="0.54,0.853" Width="160"/>
+                    <ComboBox x:Name="UgovorComboBox" Grid.Row="4" Grid.Column="1" Margin="10.2,1,0,0" ItemsSource="{Binding Ugovori}" SelectedValuePath="UID" HorizontalAlignment="Left" DisplayMemberPath="TrajanjeUgovora" Width="220" />
+
+                    <Button x:Name="ButtonCancel" Content="Cancel" Margin="158.8,10,-210.4,0"  Grid.Column="2" HorizontalAlignment="Left" Width="70" Grid.Row="1" Click="ButtonCancel_Click" />
                     <Button x:Name="ButtonSave" Content="Save" RenderTransformOrigin="0.206,0.858" Margin="68,8,-119,2"  Grid.Column="2" Grid.Row="1" Click="ButtonSave_Click" />
 
-                    <DataGrid x:Name="DirektoriList" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="-8,104,-287,-300" Grid.ColumnSpan="3" Grid.Row="3">
+                    <DataGrid x:Name="DirektoriList" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="-25,64,-270.4,-260" Grid.ColumnSpan="3" Grid.Row="4">
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="JMBGDirektora" Header="JMBG Direktora" Binding="{Binding JMBG}" Width="120"/>
                             <DataGridTextColumn x:Name="Ime" Header="Ime Direktora" Binding="{Binding Ime}" Width="120"/>
                             <DataGridTextColumn x:Name="Prezime" Header="Prezime Direktora" Binding="{Binding Prezime}" Width="120"/>
                             <DataGridTextColumn x:Name="RadniStaz" Header="Radni staz direktora" Binding="{Binding RadniStaz}" Width="120"/>
+                            <DataGridTextColumn x:Name="TrajanjeU" Header="Trajanje ugovora" Binding="{Binding Ugovor.TrajanjeUgovora}" Width="120"/>
                             <DataGridTemplateColumn Width="80">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
