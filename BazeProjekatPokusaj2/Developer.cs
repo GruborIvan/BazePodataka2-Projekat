@@ -20,6 +20,7 @@ namespace BazeProjekatPokusaj2
             this.UgovoreniProizvodi = new HashSet<UgovoreniProizvod>();
         }
     
+        public string PreferiranaTehnologija { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UgovoreniProizvod> UgovoreniProizvodi { get; set; }

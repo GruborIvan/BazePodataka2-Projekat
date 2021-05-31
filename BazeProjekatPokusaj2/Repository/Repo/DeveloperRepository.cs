@@ -9,38 +9,39 @@ using System.Threading.Tasks;
 
 namespace BazeProjekatPokusaj2.Repository.Repo
 {
-    public class KompanijaRepository : IKompanijaRepository
+    public class DeveloperRepository : IDeveloperRepository
     {
         private CompanyDbModelContainer db;
 
-        public KompanijaRepository()
+        public DeveloperRepository()
         {
             db = new CompanyDbModelContainer();
         }
 
-        public void AddKompanija(Kompanija kompanija)
+        public void AddDeveloper(Developer developer)
         {
-            db.Kompanije.Add(kompanija);
+            developer.OsobaType = "DEVELOPER";
+            db.Osobas.Add(developer);
             db.SaveChanges();
         }
 
-        public void DeleteKompanija(Kompanija kompanija)
+        public void DeleteDeveloper(Developer developer)
         {
-            db.Kompanije.Remove(kompanija);
+            db.Osobas.Remove(developer);
             db.SaveChanges();
         }
 
-        public Kompanija GetKompanijaById(int id)
+        public Developer GetDeveloperById(int id)
         {
-            return db.Kompanije.Find(id);
+            return db.Osobas.Find(id) as Developer;
         }
 
-        public IEnumerable<Kompanija> GetKompanije()
+        public IEnumerable<Osoba> GetDeveloperi()
         {
-            return db.Kompanije;
+            return db.Osobas.Where(x => x.OsobaType == "DEVELOPER");
         }
 
-        public void UpdateKompanija(Kompanija kompanija)
+        public void UpdateDeveloper(Developer developer)
         {
             try
             {

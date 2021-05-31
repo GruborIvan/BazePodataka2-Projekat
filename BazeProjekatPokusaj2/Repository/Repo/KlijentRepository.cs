@@ -1,5 +1,4 @@
-﻿using BazeProjekatPokusaj2.Repository.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -9,38 +8,39 @@ using System.Threading.Tasks;
 
 namespace BazeProjekatPokusaj2.Repository.Repo
 {
-    public class KompanijaRepository : IKompanijaRepository
+    public class KlijentRepository : IKlijentRepository
     {
         private CompanyDbModelContainer db;
 
-        public KompanijaRepository()
+        public KlijentRepository()
         {
             db = new CompanyDbModelContainer();
         }
 
-        public void AddKompanija(Kompanija kompanija)
+        public void AddKlijent(Klijent klijent)
         {
-            db.Kompanije.Add(kompanija);
+            klijent.OsobaType = "KLIJENT";
+            db.Osobas.Add(klijent);
             db.SaveChanges();
         }
 
-        public void DeleteKompanija(Kompanija kompanija)
+        public void DeleteKlijent(Klijent klijent)
         {
-            db.Kompanije.Remove(kompanija);
+            db.Osobas.Remove(klijent);
             db.SaveChanges();
         }
 
-        public Kompanija GetKompanijaById(int id)
+        public Klijent GetKlijentById(int id)
         {
-            return db.Kompanije.Find(id);
+            return db.Osobas.Find(id) as Klijent;
         }
 
-        public IEnumerable<Kompanija> GetKompanije()
+        public IEnumerable<Osoba> GetKlijenti()
         {
-            return db.Kompanije;
+            return db.Osobas.Where(x => x.OsobaType == "KLIJENT");
         }
 
-        public void UpdateKompanija(Kompanija kompanija)
+        public void UpdateKlijent(Klijent klijent)
         {
             try
             {

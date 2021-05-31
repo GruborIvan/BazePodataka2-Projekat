@@ -8,7 +8,7 @@ namespace BazeProjekatPokusaj2.Repository
 {
     public interface IDirektorRepository
     {
-        IEnumerable<Direktor> GetDirektori();
+        IEnumerable<Osoba> GetDirektori();
         Direktor GetDirektorById(int id);
         void AddDirektor(Direktor direktor);
         void UpdateDirektor(Direktor direktor);

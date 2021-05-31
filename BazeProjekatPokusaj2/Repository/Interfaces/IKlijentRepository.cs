@@ -8,8 +8,8 @@ namespace BazeProjekatPokusaj2.Repository
 {
     public interface IKlijentRepository
     {
-        IEnumerable<Klijent> GetKlijenti();
-        Klijent GetKlijentById();
+        IEnumerable<Osoba> GetKlijenti();
+        Klijent GetKlijentById(int id);
         void AddKlijent(Klijent klijent);
         void UpdateKlijent(Klijent klijent);
         void DeleteKlijent(Klijent klijent);

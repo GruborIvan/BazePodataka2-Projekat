@@ -14,8 +14,10 @@ namespace BazeProjekatPokusaj2
     
     public partial class Osoba
     {
-        public int JMBG { get; set; }
+        public int OID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
+        public string OsobaType { get; set; }
+        public int JMBG { get; set; }
     }
 }

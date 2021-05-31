@@ -18,7 +18,7 @@ namespace BazeProjekatPokusaj2
         public string NazivKompanije { get; set; }
         public string GodinaOsnivanja { get; set; }
     
-        public virtual Direktor Direktor { get; set; }
         public virtual Lokacija Lokacija { get; set; }
+        public virtual Direktor Direktor { get; set; }
     }
 }

@@ -5,8 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BazeProjekatPokusaj2.CrudWindows"
         mc:Ignorable="d"
-        Title="KlijentiWindow" Height="450" Width="800">
+        Title="KlijentiWindow" Height="650" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="328,25,0,0" TextWrapping="Wrap" Text="KLIJENTI WINDOW" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Vertical">
+            <GroupBox>
+                <Grid Height="160" Margin="15,25,17,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="66*"/>
+                        <ColumnDefinition Width="233*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="JMBG Klijenta: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="JmbgTextBox"  Margin="0,10,0,10"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="Ime: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="0,0,0,2" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="ImeTextBox"  Margin="0,10,0,10"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="Prezime: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="0,0,0,2" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="PrezimeTextBox"  Margin="0,10,0,10"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="Naziv klijenta: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="3" Margin="0,3" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="NazivKlijentaTextBox"  Margin="0,10,0,3"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Button x:Name="ButtonCancel" Content="Cancel" Margin="140,5,0,10"  Grid.Column="3" HorizontalAlignment="Left" Width="70" Click="ButtonCancel_Click" />
+                    <Button x:Name="ButtonSave" Content="Save" RenderTransformOrigin="0.206,0.858" Margin="39,5,124,10"  Grid.Column="3" Click="ButtonSave_Click" />
+
+                    <DataGrid x:Name="KlijentiList" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="0,61,0,-290" Grid.ColumnSpan="4" Grid.Row="4">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="JMBGKlijenta" Header="JMBG Klijenta" Binding="{Binding JMBG}" Width="120"/>
+                            <DataGridTextColumn x:Name="Ime" Header="Ime Klijenta" Binding="{Binding Ime}" Width="120"/>
+                            <DataGridTextColumn x:Name="Prezime" Header="Prezime Klijenta" Binding="{Binding Prezime}" Width="120"/>
+                            <DataGridTextColumn x:Name="NazivKlijenta" Header="Naziv Klijenta" Binding="{Binding NazivKlijenta}" Width="120"/>
+                            <DataGridTemplateColumn Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="EDIT" x:Name="ButtonEdit" Click="ButtonEdit_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="DELETE" x:Name="ButtonDelete" Click="ButtonDelete_Click" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
     </Grid>
 </Window>

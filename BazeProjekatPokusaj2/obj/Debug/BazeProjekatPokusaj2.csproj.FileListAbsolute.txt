@@ -32,4 +32,3 @@ D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\Klije
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\KompanijeWindow.baml
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\KonsultantiWindow.baml
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\LokacijeWindow.baml
-D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\BazeProjekatPokusaj2.csprojAssemblyReference.cache

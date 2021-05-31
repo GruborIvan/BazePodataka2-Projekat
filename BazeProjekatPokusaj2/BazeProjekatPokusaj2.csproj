@@ -111,10 +111,16 @@
     <Compile Include="Osoba.cs">
       <DependentUpon>CompanyDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\Interfaces\IDeveloperRepository.cs" />
     <Compile Include="Repository\Interfaces\IDirektorRepository.cs" />
     <Compile Include="Repository\Interfaces\IKlijentRepository.cs" />
+    <Compile Include="Repository\Interfaces\IKompanijaRepository.cs" />
     <Compile Include="Repository\Interfaces\ILokacijaRepository.cs" />
     <Compile Include="Repository\Interfaces\IUgovorRepository.cs" />
+    <Compile Include="Repository\Repo\DeveloperRepository.cs" />
+    <Compile Include="Repository\Repo\DirektorRepository.cs" />
+    <Compile Include="Repository\Repo\KlijentRepository.cs" />
+    <Compile Include="Repository\Repo\KompanijaRepository.cs" />
     <Compile Include="Repository\Repo\LokacijaRepository.cs" />
     <Compile Include="Repository\Repo\UgovorRepository.cs" />
     <Compile Include="Ugovor.cs">

@@ -27,10 +27,10 @@
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right"/>
         </StackPanel>
 
-        <DataGrid x:Name="UgovoriList" HorizontalAlignment="Left" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="147,149,0,22" Width="458">
+        <DataGrid x:Name="UgovoriList" HorizontalAlignment="Left" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="147,149,0,22" Width="515">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idUgovora" Header="ID Ugovora" Binding="{Binding UID}" Width="100"/>
-                <DataGridTextColumn x:Name="trajanjeUgovora" Header="Trajanje Ugovora" Binding="{Binding TrajanjeUgovora}" Width="100"/>
+                <DataGridTextColumn x:Name="trajanjeUgovora" Header="Trajanje Ugovora (meseci)" Binding="{Binding TrajanjeUgovora}" Width="150"/>
                 <DataGridTemplateColumn Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

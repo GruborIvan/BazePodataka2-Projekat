@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/30/2021 18:46:37
+-- Date Created: 05/31/2021 14:40:38
 -- Generated from EDMX file: D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\CompanyDbModel.edmx
 -- --------------------------------------------------
 
@@ -17,9 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_DirektorKompanija]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Osobas_Direktor] DROP CONSTRAINT [FK_DirektorKompanija];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ZaposleniUgovor]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Osobas_Zaposleni] DROP CONSTRAINT [FK_ZaposleniUgovor];
 GO
@@ -35,11 +32,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UgovoreniProizvodDeveloper]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UgovoreniProizvodi] DROP CONSTRAINT [FK_UgovoreniProizvodDeveloper];
 GO
+IF OBJECT_ID(N'[dbo].[FK_DirektorKompanija]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Kompanije] DROP CONSTRAINT [FK_DirektorKompanija];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Zaposleni_inherits_Osoba]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Osobas_Zaposleni] DROP CONSTRAINT [FK_Zaposleni_inherits_Osoba];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Direktor_inherits_Zaposleni]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Osobas_Direktor] DROP CONSTRAINT [FK_Direktor_inherits_Zaposleni];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Klijent_inherits_Osoba]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Osobas_Klijent] DROP CONSTRAINT [FK_Klijent_inherits_Osoba];
@@ -49,6 +46,9 @@ IF OBJECT_ID(N'[dbo].[FK_Konsultant_inherits_Zaposleni]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_Developer_inherits_Zaposleni]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Osobas_Developer] DROP CONSTRAINT [FK_Developer_inherits_Zaposleni];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Direktor_inherits_Zaposleni]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Osobas_Direktor] DROP CONSTRAINT [FK_Direktor_inherits_Zaposleni];
 GO
 
 -- --------------------------------------------------
@@ -73,9 +73,6 @@ GO
 IF OBJECT_ID(N'[dbo].[Osobas_Zaposleni]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Osobas_Zaposleni];
 GO
-IF OBJECT_ID(N'[dbo].[Osobas_Direktor]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Osobas_Direktor];
-GO
 IF OBJECT_ID(N'[dbo].[Osobas_Klijent]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Osobas_Klijent];
 GO
@@ -85,6 +82,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Osobas_Developer]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Osobas_Developer];
 GO
+IF OBJECT_ID(N'[dbo].[Osobas_Direktor]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Osobas_Direktor];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -92,9 +92,11 @@ GO
 
 -- Creating table 'Osobas'
 CREATE TABLE [dbo].[Osobas] (
-    [JMBG] int IDENTITY(1,1) NOT NULL,
+    [OID] int IDENTITY(1,1) NOT NULL,
     [Ime] nvarchar(max)  NOT NULL,
-    [Prezime] nvarchar(max)  NOT NULL
+    [Prezime] nvarchar(max)  NOT NULL,
+    [OsobaType] nvarchar(max)  NOT NULL,
+    [JMBG] int  NOT NULL
 );
 GO
 
@@ -103,7 +105,8 @@ CREATE TABLE [dbo].[Kompanije] (
     [KID] int IDENTITY(1,1) NOT NULL,
     [NazivKompanije] nvarchar(max)  NOT NULL,
     [GodinaOsnivanja] nvarchar(max)  NOT NULL,
-    [Lokacija_LokID] int  NOT NULL
+    [Lokacija_LokID] int  NOT NULL,
+    [Direktor_OID] int  NOT NULL
 );
 GO
 
@@ -129,9 +132,9 @@ CREATE TABLE [dbo].[UgovoreniProizvodi] (
     [OpisProizvoda] nvarchar(max)  NOT NULL,
     [VrednostProizvoda] nvarchar(max)  NOT NULL,
     [PRID] int  NOT NULL,
-    [Klijent_JMBG] int  NOT NULL,
-    [Konsultant_JMBG] int  NOT NULL,
-    [Developer_JMBG] int  NOT NULL
+    [Klijent_OID] int  NOT NULL,
+    [Konsultant_OID] int  NOT NULL,
+    [Developer_OID] int  NOT NULL
 );
 GO
 
@@ -139,33 +142,33 @@ GO
 CREATE TABLE [dbo].[Osobas_Zaposleni] (
     [RadniStaz] nvarchar(max)  NOT NULL,
     [UgovorUID] int  NOT NULL,
-    [JMBG] int  NOT NULL
-);
-GO
-
--- Creating table 'Osobas_Direktor'
-CREATE TABLE [dbo].[Osobas_Direktor] (
-    [JMBG] int  NOT NULL,
-    [Kompanija_KID] int  NOT NULL
+    [OID] int  NOT NULL
 );
 GO
 
 -- Creating table 'Osobas_Klijent'
 CREATE TABLE [dbo].[Osobas_Klijent] (
     [NazivKlijenta] nvarchar(max)  NOT NULL,
-    [JMBG] int  NOT NULL
+    [OID] int  NOT NULL
 );
 GO
 
 -- Creating table 'Osobas_Konsultant'
 CREATE TABLE [dbo].[Osobas_Konsultant] (
-    [JMBG] int  NOT NULL
+    [OID] int  NOT NULL
 );
 GO
 
 -- Creating table 'Osobas_Developer'
 CREATE TABLE [dbo].[Osobas_Developer] (
-    [JMBG] int  NOT NULL
+    [PreferiranaTehnologija] nvarchar(max)  NOT NULL,
+    [OID] int  NOT NULL
+);
+GO
+
+-- Creating table 'Osobas_Direktor'
+CREATE TABLE [dbo].[Osobas_Direktor] (
+    [OID] int  NOT NULL
 );
 GO
 
@@ -173,10 +176,10 @@ GO
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
 
--- Creating primary key on [JMBG] in table 'Osobas'
+-- Creating primary key on [OID] in table 'Osobas'
 ALTER TABLE [dbo].[Osobas]
 ADD CONSTRAINT [PK_Osobas]
-    PRIMARY KEY CLUSTERED ([JMBG] ASC);
+    PRIMARY KEY CLUSTERED ([OID] ASC);
 GO
 
 -- Creating primary key on [KID] in table 'Kompanije'
@@ -203,54 +206,39 @@ ADD CONSTRAINT [PK_UgovoreniProizvodi]
     PRIMARY KEY CLUSTERED ([PRID] ASC);
 GO
 
--- Creating primary key on [JMBG] in table 'Osobas_Zaposleni'
+-- Creating primary key on [OID] in table 'Osobas_Zaposleni'
 ALTER TABLE [dbo].[Osobas_Zaposleni]
 ADD CONSTRAINT [PK_Osobas_Zaposleni]
-    PRIMARY KEY CLUSTERED ([JMBG] ASC);
+    PRIMARY KEY CLUSTERED ([OID] ASC);
 GO
 
--- Creating primary key on [JMBG] in table 'Osobas_Direktor'
-ALTER TABLE [dbo].[Osobas_Direktor]
-ADD CONSTRAINT [PK_Osobas_Direktor]
-    PRIMARY KEY CLUSTERED ([JMBG] ASC);
-GO
-
--- Creating primary key on [JMBG] in table 'Osobas_Klijent'
+-- Creating primary key on [OID] in table 'Osobas_Klijent'
 ALTER TABLE [dbo].[Osobas_Klijent]
 ADD CONSTRAINT [PK_Osobas_Klijent]
-    PRIMARY KEY CLUSTERED ([JMBG] ASC);
+    PRIMARY KEY CLUSTERED ([OID] ASC);
 GO
 
--- Creating primary key on [JMBG] in table 'Osobas_Konsultant'
+-- Creating primary key on [OID] in table 'Osobas_Konsultant'
 ALTER TABLE [dbo].[Osobas_Konsultant]
 ADD CONSTRAINT [PK_Osobas_Konsultant]
-    PRIMARY KEY CLUSTERED ([JMBG] ASC);
+    PRIMARY KEY CLUSTERED ([OID] ASC);
 GO
 
--- Creating primary key on [JMBG] in table 'Osobas_Developer'
+-- Creating primary key on [OID] in table 'Osobas_Developer'
 ALTER TABLE [dbo].[Osobas_Developer]
 ADD CONSTRAINT [PK_Osobas_Developer]
-    PRIMARY KEY CLUSTERED ([JMBG] ASC);
+    PRIMARY KEY CLUSTERED ([OID] ASC);
+GO
+
+-- Creating primary key on [OID] in table 'Osobas_Direktor'
+ALTER TABLE [dbo].[Osobas_Direktor]
+ADD CONSTRAINT [PK_Osobas_Direktor]
+    PRIMARY KEY CLUSTERED ([OID] ASC);
 GO
 
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [Kompanija_KID] in table 'Osobas_Direktor'
-ALTER TABLE [dbo].[Osobas_Direktor]
-ADD CONSTRAINT [FK_DirektorKompanija]
-    FOREIGN KEY ([Kompanija_KID])
-    REFERENCES [dbo].[Kompanije]
-        ([KID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_DirektorKompanija'
-CREATE INDEX [IX_FK_DirektorKompanija]
-ON [dbo].[Osobas_Direktor]
-    ([Kompanija_KID]);
-GO
 
 -- Creating foreign key on [UgovorUID] in table 'Osobas_Zaposleni'
 ALTER TABLE [dbo].[Osobas_Zaposleni]
@@ -282,93 +270,108 @@ ON [dbo].[Kompanije]
     ([Lokacija_LokID]);
 GO
 
--- Creating foreign key on [Klijent_JMBG] in table 'UgovoreniProizvodi'
+-- Creating foreign key on [Klijent_OID] in table 'UgovoreniProizvodi'
 ALTER TABLE [dbo].[UgovoreniProizvodi]
 ADD CONSTRAINT [FK_UgovoreniProizvodKlijent]
-    FOREIGN KEY ([Klijent_JMBG])
+    FOREIGN KEY ([Klijent_OID])
     REFERENCES [dbo].[Osobas_Klijent]
-        ([JMBG])
+        ([OID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UgovoreniProizvodKlijent'
 CREATE INDEX [IX_FK_UgovoreniProizvodKlijent]
 ON [dbo].[UgovoreniProizvodi]
-    ([Klijent_JMBG]);
+    ([Klijent_OID]);
 GO
 
--- Creating foreign key on [Konsultant_JMBG] in table 'UgovoreniProizvodi'
+-- Creating foreign key on [Konsultant_OID] in table 'UgovoreniProizvodi'
 ALTER TABLE [dbo].[UgovoreniProizvodi]
 ADD CONSTRAINT [FK_UgovoreniProizvodKonsultant]
-    FOREIGN KEY ([Konsultant_JMBG])
+    FOREIGN KEY ([Konsultant_OID])
     REFERENCES [dbo].[Osobas_Konsultant]
-        ([JMBG])
+        ([OID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UgovoreniProizvodKonsultant'
 CREATE INDEX [IX_FK_UgovoreniProizvodKonsultant]
 ON [dbo].[UgovoreniProizvodi]
-    ([Konsultant_JMBG]);
+    ([Konsultant_OID]);
 GO
 
--- Creating foreign key on [Developer_JMBG] in table 'UgovoreniProizvodi'
+-- Creating foreign key on [Developer_OID] in table 'UgovoreniProizvodi'
 ALTER TABLE [dbo].[UgovoreniProizvodi]
 ADD CONSTRAINT [FK_UgovoreniProizvodDeveloper]
-    FOREIGN KEY ([Developer_JMBG])
+    FOREIGN KEY ([Developer_OID])
     REFERENCES [dbo].[Osobas_Developer]
-        ([JMBG])
+        ([OID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UgovoreniProizvodDeveloper'
 CREATE INDEX [IX_FK_UgovoreniProizvodDeveloper]
 ON [dbo].[UgovoreniProizvodi]
-    ([Developer_JMBG]);
+    ([Developer_OID]);
 GO
 
--- Creating foreign key on [JMBG] in table 'Osobas_Zaposleni'
+-- Creating foreign key on [Direktor_OID] in table 'Kompanije'
+ALTER TABLE [dbo].[Kompanije]
+ADD CONSTRAINT [FK_DirektorKompanija]
+    FOREIGN KEY ([Direktor_OID])
+    REFERENCES [dbo].[Osobas_Direktor]
+        ([OID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DirektorKompanija'
+CREATE INDEX [IX_FK_DirektorKompanija]
+ON [dbo].[Kompanije]
+    ([Direktor_OID]);
+GO
+
+-- Creating foreign key on [OID] in table 'Osobas_Zaposleni'
 ALTER TABLE [dbo].[Osobas_Zaposleni]
 ADD CONSTRAINT [FK_Zaposleni_inherits_Osoba]
-    FOREIGN KEY ([JMBG])
+    FOREIGN KEY ([OID])
     REFERENCES [dbo].[Osobas]
-        ([JMBG])
+        ([OID])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [JMBG] in table 'Osobas_Direktor'
-ALTER TABLE [dbo].[Osobas_Direktor]
-ADD CONSTRAINT [FK_Direktor_inherits_Zaposleni]
-    FOREIGN KEY ([JMBG])
-    REFERENCES [dbo].[Osobas_Zaposleni]
-        ([JMBG])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [JMBG] in table 'Osobas_Klijent'
+-- Creating foreign key on [OID] in table 'Osobas_Klijent'
 ALTER TABLE [dbo].[Osobas_Klijent]
 ADD CONSTRAINT [FK_Klijent_inherits_Osoba]
-    FOREIGN KEY ([JMBG])
+    FOREIGN KEY ([OID])
     REFERENCES [dbo].[Osobas]
-        ([JMBG])
+        ([OID])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [JMBG] in table 'Osobas_Konsultant'
+-- Creating foreign key on [OID] in table 'Osobas_Konsultant'
 ALTER TABLE [dbo].[Osobas_Konsultant]
 ADD CONSTRAINT [FK_Konsultant_inherits_Zaposleni]
-    FOREIGN KEY ([JMBG])
+    FOREIGN KEY ([OID])
     REFERENCES [dbo].[Osobas_Zaposleni]
-        ([JMBG])
+        ([OID])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [JMBG] in table 'Osobas_Developer'
+-- Creating foreign key on [OID] in table 'Osobas_Developer'
 ALTER TABLE [dbo].[Osobas_Developer]
 ADD CONSTRAINT [FK_Developer_inherits_Zaposleni]
-    FOREIGN KEY ([JMBG])
+    FOREIGN KEY ([OID])
     REFERENCES [dbo].[Osobas_Zaposleni]
-        ([JMBG])
+        ([OID])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [OID] in table 'Osobas_Direktor'
+ALTER TABLE [dbo].[Osobas_Direktor]
+ADD CONSTRAINT [FK_Direktor_inherits_Zaposleni]
+    FOREIGN KEY ([OID])
+    REFERENCES [dbo].[Osobas_Zaposleni]
+        ([OID])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 

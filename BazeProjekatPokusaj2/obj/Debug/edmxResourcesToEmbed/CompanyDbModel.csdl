@@ -4,10 +4,6 @@
     <EntitySet Name="Osobas" EntityType="CompanyDbModel.Osoba" />
     <EntitySet Name="Kompanije" EntityType="CompanyDbModel.Kompanija" />
     <EntitySet Name="Lokacije" EntityType="CompanyDbModel.Lokacija" />
-    <AssociationSet Name="DirektorKompanija" Association="CompanyDbModel.DirektorKompanija">
-      <End Role="Direktor" EntitySet="Osobas" />
-      <End Role="Kompanija" EntitySet="Kompanije" />
-    </AssociationSet>
     <EntitySet Name="Ugovori" EntityType="CompanyDbModel.Ugovor" />
     <AssociationSet Name="ZaposleniUgovor" Association="CompanyDbModel.ZaposleniUgovor">
       <End Role="Zaposleni" EntitySet="Osobas" />
@@ -30,20 +26,26 @@
       <End Role="UgovoreniProizvod" EntitySet="UgovoreniProizvodi" />
       <End Role="Developer" EntitySet="Osobas" />
     </AssociationSet>
+    <AssociationSet Name="DirektorKompanija" Association="CompanyDbModel.DirektorKompanija">
+      <End Role="Direktor" EntitySet="Osobas" />
+      <End Role="Kompanija" EntitySet="Kompanije" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Osoba">
+  <EntityType Name="Osoba" Abstract="false">
     <Key>
-      <PropertyRef Name="JMBG" />
+      <PropertyRef Name="OID" />
     </Key>
-    <Property Name="JMBG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ime" Type="String" Nullable="false" />
     <Property Name="Prezime" Type="String" Nullable="false" />
+    <Property Name="OsobaType" Type="String" Nullable="false" />
+    <Property Name="JMBG" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Klijent" BaseType="CompanyDbModel.Osoba">
     <Property Name="NazivKlijenta" Type="String" Nullable="false" />
     <NavigationProperty Name="UgovoreniProizvodi" Relationship="CompanyDbModel.UgovoreniProizvodKlijent" FromRole="Klijent" ToRole="UgovoreniProizvod" />
   </EntityType>
-  <EntityType Name="Zaposleni" BaseType="CompanyDbModel.Osoba">
+  <EntityType Name="Zaposleni" BaseType="CompanyDbModel.Osoba" Abstract="false">
     <Property Name="RadniStaz" Type="String" Nullable="false" />
     <NavigationProperty Name="Ugovor" Relationship="CompanyDbModel.ZaposleniUgovor" FromRole="Zaposleni" ToRole="Ugovor" />
     <Property Name="UgovorUID" Type="Int32" Nullable="false" />
@@ -53,6 +55,7 @@
   </EntityType>
   <EntityType Name="Developer" BaseType="CompanyDbModel.Zaposleni">
     <NavigationProperty Name="UgovoreniProizvodi" Relationship="CompanyDbModel.UgovoreniProizvodDeveloper" FromRole="Developer" ToRole="UgovoreniProizvod" />
+    <Property Name="PreferiranaTehnologija" Type="String" Nullable="false" />
   </EntityType>
   <EntityType Name="Konsultant" BaseType="CompanyDbModel.Zaposleni">
     <NavigationProperty Name="UgovoreniProizvods" Relationship="CompanyDbModel.UgovoreniProizvodKonsultant" FromRole="Konsultant" ToRole="UgovoreniProizvod" />
@@ -62,10 +65,10 @@
       <PropertyRef Name="KID" />
     </Key>
     <Property Name="KID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Direktor" Relationship="CompanyDbModel.DirektorKompanija" FromRole="Kompanija" ToRole="Direktor" />
     <Property Name="NazivKompanije" Type="String" Nullable="false" />
     <Property Name="GodinaOsnivanja" Type="String" Nullable="false" />
     <NavigationProperty Name="Lokacija" Relationship="CompanyDbModel.KompanijaLokacija" FromRole="Kompanija" ToRole="Lokacija" />
+    <NavigationProperty Name="Direktor" Relationship="CompanyDbModel.DirektorKompanija" FromRole="Kompanija" ToRole="Direktor" />
   </EntityType>
   <EntityType Name="Lokacija">
     <Key>
@@ -78,10 +81,6 @@
     <Property Name="PostanskiBroj" Type="String" Nullable="false" />
     <NavigationProperty Name="Kompanija" Relationship="CompanyDbModel.KompanijaLokacija" FromRole="Lokacija" ToRole="Kompanija" />
   </EntityType>
-  <Association Name="DirektorKompanija">
-    <End Type="CompanyDbModel.Direktor" Role="Direktor" Multiplicity="1" />
-    <End Type="CompanyDbModel.Kompanija" Role="Kompanija" Multiplicity="1" />
-  </Association>
   <EntityType Name="Ugovor">
     <Key>
       <PropertyRef Name="UID" />
@@ -128,5 +127,9 @@
   <Association Name="UgovoreniProizvodDeveloper">
     <End Type="CompanyDbModel.UgovoreniProizvod" Role="UgovoreniProizvod" Multiplicity="*" />
     <End Type="CompanyDbModel.Developer" Role="Developer" Multiplicity="1" />
+  </Association>
+  <Association Name="DirektorKompanija">
+    <End Type="CompanyDbModel.Direktor" Role="Direktor" Multiplicity="1" />
+    <End Type="CompanyDbModel.Kompanija" Role="Kompanija" Multiplicity="0..1" />
   </Association>
 </Schema>

@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BazeProjekatPokusaj2.CrudWindows"
         mc:Ignorable="d"
-        Title="DeveloperiWindow" Height="485.653" Width="802.261">
+        Title="DeveloperiWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="0,0,-15,-40" Height="520" VerticalAlignment="Top">
+        <StackPanel Orientation="Vertical">
             <GroupBox>
-                <Grid Height="200" Margin="15,10,17,10">
+                <Grid Height="160" Margin="15,25,17,10">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
@@ -36,36 +35,9 @@
                     <Label Content="Radni staz developera: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="3" Margin="0,3" RenderTransformOrigin="0.54,0.853" Width="201"/>
                     <TextBox Grid.Row="3" Grid.Column="1" x:Name="RadniStazTextBox"  Margin="0,10,0,3"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
 
-                    <Label Content="Preferirane tehnologije: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="0,6,0,0" RenderTransformOrigin="0.54,0.853" Width="201"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="TehnologijeTextBox"  Margin="0,9,0,4"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-
                     <Button x:Name="ButtonCancel" Content="Cancel" Margin="140,5,0,10"  Grid.Column="3" HorizontalAlignment="Left" Width="70" Click="ButtonCancel_Click" />
                     <Button x:Name="ButtonSave" Content="Save" RenderTransformOrigin="0.206,0.858" Margin="39,5,124,10"  Grid.Column="3" Click="ButtonSave_Click" />
 
-                    <DataGrid x:Name="DeveloperiList" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="-10,60,-14,-233" Grid.ColumnSpan="4" Grid.Row="4">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="JMBGKlijenta" Header="JMBG Developera" Binding="{Binding JMBG}" Width="120"/>
-                            <DataGridTextColumn x:Name="Ime" Header="Ime Developera" Binding="{Binding Ime}" Width="120"/>
-                            <DataGridTextColumn x:Name="Prezime" Header="Prezime Developera" Binding="{Binding Prezime}" Width="120"/>
-                            <DataGridTextColumn x:Name="RadniStaz" Header="Radni staz (god.)" Binding="{Binding RadniStaz}" Width="100"/>
-                            <DataGridTextColumn x:Name="Tehnologije" Header="Preferirane tehnologije" Binding="{Binding PreferiranaTehnologija}" Width="150"/>
-
-                            <DataGridTemplateColumn Width="80">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="EDIT" x:Name="ButtonEdit" Click="ButtonEdit_Click"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Width="80">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="DELETE" x:Name="ButtonDelete" Click="ButtonDelete_Click"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
                 </Grid>
             </GroupBox>
         </StackPanel>
