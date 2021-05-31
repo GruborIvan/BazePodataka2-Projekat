@@ -5,8 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BazeProjekatPokusaj2.CrudWindows"
         mc:Ignorable="d"
-        Title="KonsultantiWindow" Height="450" Width="800">
+        Title="KonsultantiWindow" Height="450" Width="950">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="328,25,0,0" TextWrapping="Wrap" Text="KONSULTANTI WINDOW" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Vertical" Margin="0,0,-15,-40" Height="520" VerticalAlignment="Top">
+            <GroupBox>
+                <Grid Height="150" Margin="15,10,17,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="66*"/>
+                        <ColumnDefinition Width="233*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="JMBG Konsultanta: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="JmbgTextBox"  Margin="0,0,0,0.4"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="Ime: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="0,0,0,2" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="ImeTextBox"  Margin="0,4.6,0,1.8"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="Prezime: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="0,0,0,2" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="PrezimeTextBox"  Margin="0,3.2,0,2.2"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="Radni staz konsultanta: " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="3" Margin="0,3" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="RadniStazTextBox"  Margin="0,3.2,0,2.2"  Width="269" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="Vrsta ugovora (trajanje u mesecima): " HorizontalAlignment="Left"  VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="0,2,0,3" RenderTransformOrigin="0.54,0.853" Width="201"/>
+                    <ComboBox x:Name="UgovorComboBox" Grid.Row="4" Grid.Column="1" Margin="24,0,0,3" ItemsSource="{Binding Ugovori}" SelectedValuePath="UID" HorizontalAlignment="Left" DisplayMemberPath="TrajanjeUgovora" Width="133" />
+
+                    <Button x:Name="ButtonCancel" Content="Cancel" Margin="161.2,5,0,0.4"  Grid.Column="3" HorizontalAlignment="Left" Width="70" Click="ButtonCancel_Click" RenderTransformOrigin="1.027,2.872" />
+                    <Button x:Name="ButtonSave" Content="Save" RenderTransformOrigin="0.206,0.858" Margin="38.2,5,247.2,0"  Grid.Column="3" Click="ButtonSave_Click" Height="25" VerticalAlignment="Top" />
+
+
+                    <DataGrid x:Name="KonsultantiList" Background="LightBlue" SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="0,54,5,-237" Grid.ColumnSpan="4" Grid.Row="4">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="JMBGKlijenta" Header="JMBG Developera" Binding="{Binding JMBG}" Width="120"/>
+                            <DataGridTextColumn x:Name="Ime" Header="Ime Developera" Binding="{Binding Ime}" Width="120"/>
+                            <DataGridTextColumn x:Name="Prezime" Header="Prezime Developera" Binding="{Binding Prezime}" Width="120"/>
+                            <DataGridTextColumn x:Name="RadniStaz" Header="Radni staz (god.)" Binding="{Binding RadniStaz}" Width="100"/>
+                            <DataGridTextColumn x:Name="TrajanjeU" Header="Trajanje ugovora" Binding="{Binding Ugovor.TrajanjeUgovora}" Width="120"/>
+
+                            <DataGridTemplateColumn Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="EDIT" x:Name="ButtonEdit" Click="ButtonEdit_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="DELETE" x:Name="ButtonDelete" Click="ButtonDelete_Click" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
     </Grid>
 </Window>
