@@ -20,7 +20,10 @@ namespace BazeProjekatPokusaj2.Repository.Repo
 
         public void AddUgovoreniProizvod(UgovoreniProizvod proizvod)
         {
-            proizvod.PRID = db.UgovoreniProizvodi.OrderByDescending(x => x.PRID).First().PRID + 1;
+            if (db.UgovoreniProizvodi.Count() > 0)
+            {
+                proizvod.PRID = db.UgovoreniProizvodi.OrderByDescending(x => x.PRID).First().PRID + 1;
+            }
             db.UgovoreniProizvodi.Add(proizvod);
             db.SaveChanges();
         }

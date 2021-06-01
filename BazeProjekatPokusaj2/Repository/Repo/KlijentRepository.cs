@@ -26,6 +26,12 @@ namespace BazeProjekatPokusaj2.Repository.Repo
 
         public void DeleteKlijent(Klijent klijent)
         {
+            foreach(UgovoreniProizvod up in db.UgovoreniProizvodi)
+            {
+                if (up.Klijent.OID.Equals(klijent.OID))
+                    db.UgovoreniProizvodi.Remove(up);
+            }
+            db.SaveChanges();
             db.Osobas.Remove(klijent);
             db.SaveChanges();
         }

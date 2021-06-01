@@ -57,14 +57,14 @@
                             <DataGridTemplateColumn Width="80">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="EDIT" x:Name="ButtonEdit" />
+                                        <Button Content="EDIT" x:Name="ButtonEdit" Click="ButtonEdit_Click" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTemplateColumn Width="80">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="DELETE" x:Name="ButtonDelete" />
+                                        <Button Content="DELETE" x:Name="ButtonDelete" Click="ButtonDelete_Click" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>

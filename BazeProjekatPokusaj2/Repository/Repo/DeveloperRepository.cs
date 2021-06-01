@@ -27,6 +27,12 @@ namespace BazeProjekatPokusaj2.Repository.Repo
 
         public void DeleteDeveloper(Developer developer)
         {
+            foreach(UgovoreniProizvod up in db.UgovoreniProizvodi)
+            {
+                if (up.Developer.OID.Equals(developer.OID))
+                    db.UgovoreniProizvodi.Remove(up);
+            }
+            db.SaveChanges();
             db.Osobas.Remove(developer);
             db.SaveChanges();
         }

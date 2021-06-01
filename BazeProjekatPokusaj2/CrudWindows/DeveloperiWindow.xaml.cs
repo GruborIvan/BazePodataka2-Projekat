@@ -118,5 +118,10 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 }
             }
         }
+
+        private void ButtonEdit_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
