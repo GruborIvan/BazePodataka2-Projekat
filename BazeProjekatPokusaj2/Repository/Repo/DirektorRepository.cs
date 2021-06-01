@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,15 @@ namespace BazeProjekatPokusaj2.Repository.Repo
             direktor.OsobaType = "DIREKTOR";
             db.Osobas.Add(direktor);
             db.SaveChanges();
+
+            //var oid = new SqlParameter("@OID", db.Osobas.OrderByDescending(x => x.OID).First().OID + 1);
+            //var ime = new SqlParameter("@Ime", direktor.Ime);
+            //var prezime = new SqlParameter("@Prezime", direktor.Prezime);
+            //var jmbg = new SqlParameter("@JMBG", direktor.JMBG);
+            //var radnistaz = new SqlParameter("@RadniStaz", direktor.RadniStaz);
+            //var uid = new SqlParameter("@UgovorId", direktor.UgovorUID);
+            //db.Database.ExecuteSqlCommand("exec [dbo].[C_INS_Direktori] @OID,@Ime,@Prezime,@JMBG,@RadniStaz,@UgovorId",
+            //    oid, ime, prezime, jmbg, radnistaz, uid);
         }
 
         public void DeleteDirektor(Direktor direktor)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace BazeProjekatPokusaj2.Repository.Repo
             konsultant.OsobaType = "KONSULTANT";
             db.Osobas.Add(konsultant);
             db.SaveChanges();
+
+            //var oid = new SqlParameter("@OID", db.Osobas.OrderByDescending(x => x.OID).First().OID + 1);
+            //var ime = new SqlParameter("@Ime", konsultant.Ime);
+            //var prezime = new SqlParameter("@Prezime", konsultant.Prezime);
+            //var jmbg = new SqlParameter("@JMBG", konsultant.JMBG);
+            //var radnistaz = new SqlParameter("@RadniStaz", konsultant.RadniStaz);
+            //var uid = new SqlParameter("@UgovorId", konsultant.UgovorUID);
+            //db.Database.ExecuteSqlCommand("exec [dbo].[C_INS_Konsultanti] @OID,@Ime,@Prezime,@JMBG,@RadniStaz,@UgovorId",
+            //    oid, ime, prezime, jmbg, radnistaz, uid);
         }
 
         public void DeleteKonsultant(Konsultant konsultant)
