@@ -49,6 +49,8 @@ namespace BazeProjekatPokusaj2.CrudWindows
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateForm())
+                return;
             Klijent client;
             if (this.editId == -1)
             {
@@ -107,6 +109,38 @@ namespace BazeProjekatPokusaj2.CrudWindows
                     LoadAllKlijents();
                 }
             }
+        }
+
+        private bool ValidateForm()
+        {
+            string alertText = String.Empty;
+            Klijent client = new Klijent();
+            client.Ime = ImeTextBox.Text;
+            client.Prezime = PrezimeTextBox.Text;
+            client.NazivKlijenta = NazivKlijentaTextBox.Text;
+
+            if (client.Ime == String.Empty)
+                alertText += "Unesite Ime Klijenta!\n";
+            if (client.Prezime == String.Empty)
+                alertText += "Unesite Prezime Klijenta! \n";
+            if (client.NazivKlijenta == String.Empty)
+                alertText += "Unesite Naziv Klijenta!\n";
+
+            try
+            {
+                client.JMBG = Convert.ToInt32(JmbgTextBox.Text);
+            }
+            catch(Exception e)
+            {
+                alertText += "JMBG Mora biti broj! \n";
+            }
+
+            if (alertText != String.Empty)
+            {
+                System.Windows.MessageBox.Show(alertText, "ERROR", MessageBoxButton.OK);
+                return false;
+            }
+            return true;
         }
     }
 }

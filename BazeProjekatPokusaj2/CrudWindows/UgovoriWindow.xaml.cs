@@ -43,6 +43,8 @@ namespace BazeProjekatPokusaj2
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateForm())
+                return;
             int TrajanjeUgovora = 0;
 
             try
@@ -108,5 +110,29 @@ namespace BazeProjekatPokusaj2
                 }
             }
         }
+
+        private bool ValidateForm()
+        {
+            string alertText = String.Empty;
+
+            if (TrajanjeUgovoraTextBox.Text == String.Empty)
+                alertText += "Unesite trajanje ugovora! \n";
+
+            try
+            {
+                int trajanje = Convert.ToInt32(TrajanjeUgovoraTextBox.Text);
+            }
+            catch(Exception e)
+            {
+                alertText += "Trajanje ugovora mora biti broj (meseci).";
+            }
+            if (alertText != String.Empty)
+            {
+                System.Windows.MessageBox.Show(alertText, "ERROR", MessageBoxButton.OK);
+                return false;
+            }
+            return true;
+        }
+
     }
 }

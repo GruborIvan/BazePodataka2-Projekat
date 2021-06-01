@@ -50,6 +50,8 @@ namespace BazeProjekatPokusaj2.CrudWindows
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            if (!Validate())
+                return;
             Konsultant konsultant;
             if (this.editId == -1)
             {
@@ -58,7 +60,6 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 konsultant.Ime = ImeTextBox.Text;
                 konsultant.Prezime = PrezimeTextBox.Text;
                 konsultant.RadniStaz = RadniStazTextBox.Text;
-                konsultant.UgovorUID = 3;
                 konsultant.UgovorUID = ((Ugovor)UgovorComboBox.SelectedItem).UID;
                 _repository.AddKonsultant(konsultant);
             }
@@ -112,6 +113,58 @@ namespace BazeProjekatPokusaj2.CrudWindows
                     LoadAllKonsultanti();
                 }
             }
+        }
+    
+        private bool Validate()
+        {
+            string alertText = String.Empty;
+            Konsultant konsultant = new Konsultant();
+            try
+            {
+                konsultant.JMBG = Convert.ToInt32(JmbgTextBox.Text);
+            }
+            catch(Exception e)
+            {
+                alertText += "JMBG mora biti u brojevnom formatu!";
+            }
+            
+            konsultant.Ime = ImeTextBox.Text;
+            konsultant.Prezime = PrezimeTextBox.Text;
+            konsultant.RadniStaz = RadniStazTextBox.Text;
+
+            if (konsultant.JMBG == 0)
+                alertText += "Nije unet JMBG! \n";
+
+            if (konsultant.JMBG < 5000)
+                alertText += "JMBG mora biti veci od 5000! \n";
+
+            if (konsultant.Ime == String.Empty)
+                alertText += "Nije uneto ime Konsultanta! \n";
+
+            if (konsultant.Prezime == String.Empty)
+                alertText += "Nije uneto prezime Konsultanta! \n";
+
+            if (konsultant.RadniStaz == String.Empty)
+                alertText += "Nije unet radni staz konsultanta! \n";
+
+            try
+            {
+                int rstz = Convert.ToInt32(konsultant.RadniStaz);
+            }
+            catch(Exception e)
+            {
+                alertText += "Radni staz mora biti broj (Godine) ! \n";
+            }
+
+            if (UgovorComboBox.SelectedItem == null)
+                alertText += "Nije odabran nijedan ugovor za Konsultanta!";
+
+            if (alertText != String.Empty)
+            {
+                System.Windows.MessageBox.Show(alertText, "ERROR", MessageBoxButton.OK);
+                return false;
+            }
+            return true;
         }
     }
 }

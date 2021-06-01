@@ -46,6 +46,8 @@ namespace BazeProjekatPokusaj2.CrudWindows
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateForm())
+                return;
             Developer developer;
             if (this.editId == -1)
             {
@@ -119,9 +121,60 @@ namespace BazeProjekatPokusaj2.CrudWindows
             }
         }
 
-        private void ButtonEdit_Click_1(object sender, RoutedEventArgs e)
+        private bool ValidateForm()
         {
+            string alertText = String.Empty;
+            Developer developer = new Developer();
+            try
+            {
+                developer.JMBG = Convert.ToInt32(JmbgTextBox.Text);
+            }
+            catch (Exception e)
+            {
+                alertText += "JMBG mora biti u brojevnom formatu!";
+            }
 
+            developer.Ime = ImeTextBox.Text;
+            developer.Prezime = PrezimeTextBox.Text;
+            developer.RadniStaz = RadniStazTextBox.Text;
+
+            if (developer.JMBG == 0)
+                alertText += "Nije unet JMBG! \n";
+
+            if (developer.JMBG < 5000)
+                alertText += "JMBG mora biti veci od 5000! \n";
+
+            if (developer.Ime == String.Empty)
+                alertText += "Nije uneto ime Konsultanta! \n";
+
+            if (developer.Prezime == String.Empty)
+                alertText += "Nije uneto prezime Konsultanta! \n";
+
+            if (TehnologijeTextBox.Text == String.Empty)
+                alertText += "Nisu unesene preferirane tehnologije! \n";
+
+            if (developer.RadniStaz == String.Empty)
+                alertText += "Nije unet radni staz konsultanta! \n";
+
+            try
+            {
+                int rstz = Convert.ToInt32(developer.RadniStaz);
+            }
+            catch (Exception e)
+            {
+                alertText += "Radni staz mora biti broj (Godine) ! \n";
+            }
+
+            if (UgovorComboBox.SelectedItem == null)
+                alertText += "Nije odabran nijedan ugovor za Konsultanta!";
+
+            if (alertText != String.Empty)
+            {
+                System.Windows.MessageBox.Show(alertText, "ERROR", MessageBoxButton.OK);
+                return false;
+            }
+
+            return true;
         }
     }
 }

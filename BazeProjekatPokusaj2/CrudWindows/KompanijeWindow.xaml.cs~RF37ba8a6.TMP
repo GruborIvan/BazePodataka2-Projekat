@@ -145,17 +145,6 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 alertText += "Godina osnivanja mora biti broj! \n";
             }
 
-            if (lok == null)
-                alertText += "Morate odabrati lokaciju! \n";
-
-            if (dir == null)
-                alertText += "Morate odabrati direktora firme! \n";
-
-            if (alertText != String.Empty)
-            {
-                System.Windows.MessageBox.Show(alertText, "ERROR", MessageBoxButton.OK);
-                return false;
-            }
             return true;
         }
 

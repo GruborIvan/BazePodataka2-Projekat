@@ -44,6 +44,8 @@ namespace BazeProjekatPokusaj2.CrudWindows
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateForm())
+                return;
             string nazivGrada = GradTextBox.Text;
             string nazivUlice = UlicaTextBox.Text;
             string postanskiBroj = PostanskiBrojTextBox.Text;
@@ -99,5 +101,44 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 LoadAllLocations();
             }
         }
+
+        private bool ValidateForm()
+        {
+            string alertText = String.Empty;
+
+            string nazivGrada = GradTextBox.Text;
+            string nazivUlice = UlicaTextBox.Text;
+            string postanskiBroj = PostanskiBrojTextBox.Text;
+
+            if (nazivGrada == String.Empty)
+            {
+                alertText += "Naziv Grada field is empty! \n";
+            }
+            if (nazivUlice == String.Empty)
+            {
+                alertText += "Naziv Ulice field is empty! \n";
+            }
+            if (postanskiBroj == String.Empty)
+            {
+                alertText += "Postanski broj is empty! \n";
+            }
+            
+            try
+            {
+                Int64 br = Convert.ToInt64(postanskiBroj);
+            }
+            catch(Exception e)
+            {
+                alertText += "Postanski broj mora biti broj! \n";
+            }
+
+            if (alertText != String.Empty)
+            {
+                MessageBox.Show(alertText, "ERROR", MessageBoxButton.OK);
+                return false;
+            }
+            return true;
+        }
+
     }
 }

@@ -68,6 +68,8 @@ namespace BazeProjekatPokusaj2.CrudWindows
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            if (!ValidateForm())
+                return;
             UgovoreniProizvod pro;
             if (this.editId == -1)
             {
@@ -116,5 +118,37 @@ namespace BazeProjekatPokusaj2.CrudWindows
                 }
             }
         }
+
+        private bool ValidateForm()
+        {
+            string alertText = String.Empty;
+
+            if (KlijentComboBox.SelectedItem == null)
+                alertText += "Unesite klijenta koji narucuje proizvod! \n";
+            if (KonsultantComboBox.SelectedItem == null)
+                alertText += "Unesite konsultanta koji ugovara proizvod! \n";
+            if (DeveloperiComboBox.SelectedItem == null)
+                alertText += "Unesite developera koji izradjuje proizvod \n";
+            if (OpisProizvodaTextBox.Text == String.Empty)
+                alertText += "Unesite opis proizvoda! \n";
+            if (VrednostProizvodaTextBox.Text == String.Empty)
+                alertText += "Unesite vrednost proizvoda! \n";
+
+            try
+            {
+                int vr = Convert.ToInt32(VrednostProizvodaTextBox.Text);
+            }
+            catch(Exception e)
+            {
+                alertText += "Vrednost proizvoda mora biti brojevna vrednost! \n";
+            }
+            if (alertText != String.Empty)
+            {
+                System.Windows.MessageBox.Show(alertText, "ERROR", MessageBoxButton.OK);
+                return false;
+            }
+            return true;
+        }
+
     }
 }
