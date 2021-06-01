@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BazeProjekatPokusaj2.CrudWindows"
         mc:Ignorable="d"
         Title="DeveloperiWindow" Height="485.653" Width="950">
-    <Grid>
+    <Grid Background="LightYellow">
         <StackPanel Orientation="Vertical" Margin="0,0,-15,-40" Height="520" VerticalAlignment="Top">
             <GroupBox>
                 <Grid Height="180" Margin="15,10,17,10">

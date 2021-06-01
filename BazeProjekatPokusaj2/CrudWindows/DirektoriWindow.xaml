@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BazeProjekatPokusaj2.CrudWindows"
         mc:Ignorable="d"
         Title="DirektoriWindow" Height="550" Width="820">
-    <Grid>
+    <Grid Background="LightYellow">
         <StackPanel Orientation="Vertical">
             <GroupBox>
                 <Grid Height="200" Margin="26,30,17,30">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BazeProjekatPokusaj2.Repository.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -26,8 +27,8 @@ namespace BazeProjekatPokusaj2.Repository.Repo
 
         public void DeleteLokacija(Lokacija lokacija)
         {
-            db.Lokacije.Remove(lokacija);
-            db.SaveChanges();
+            IKompanijaRepository rep = new KompanijaRepository();
+            rep.DeleteKompanija(lokacija.Kompanija);
         }
 
         public Lokacija GetLokacijaById(int id)

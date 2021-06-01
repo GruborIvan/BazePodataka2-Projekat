@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BazeProjekatPokusaj2"
         mc:Ignorable="d"
         Title="UgovoriWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="LightYellow">
 
         <StackPanel Orientation="Vertical">
             <GroupBox>

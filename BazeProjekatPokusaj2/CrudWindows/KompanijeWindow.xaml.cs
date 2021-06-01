@@ -93,6 +93,7 @@ namespace BazeProjekatPokusaj2.CrudWindows
             LokacijeComboBox.SelectedItem = kompanija.Lokacija;
             DirektoriComboBox.SelectedItem = kompanija.Direktor;
             this.editId = kompanija.KID;
+            LoadAllKompanije();
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)

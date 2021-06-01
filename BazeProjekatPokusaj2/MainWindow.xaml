@@ -6,14 +6,23 @@
         xmlns:local="clr-namespace:BazeProjekatPokusaj2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="Klijenti" Content="Klijenti" HorizontalAlignment="Left" Margin="40,56,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Klijenti_Click" />
-        <Button x:Name="Direktori" Content="Direktori" HorizontalAlignment="Left" Margin="227,56,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Direktori_Click" />
-        <Button x:Name="Developeri" Content="Developeri" HorizontalAlignment="Left" Margin="420,56,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Developeri_Click" />
-        <Button x:Name="Konsultanti" Content="Konsultanti" HorizontalAlignment="Left" Margin="596,56,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Konsultanti_Click" />
-        <Button x:Name="Ugovori" Content="Ugovori" HorizontalAlignment="Left" Margin="81,205,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Ugovori_Click"/>
+    <Grid Background="LightYellow">
+        <Button x:Name="Klijenti" Content="Klijenti" HorizontalAlignment="Left" Margin="40,56,0,0" VerticalAlignment="Top" Width="126" Height="41" Click="Klijenti_Click" RenderTransformOrigin="0.5,0.5" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.863"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.527"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="Direktori" Content="Direktori" HorizontalAlignment="Left" Margin="616,165,0,0" VerticalAlignment="Top" Width="128" Height="50" Click="Direktori_Click" />
+        <Button x:Name="Developeri" Content="Developeri" HorizontalAlignment="Left" Margin="616,100,0,0" VerticalAlignment="Top" Width="130" Height="48" Click="Developeri_Click" />
+        <Button x:Name="Konsultanti" Content="Konsultanti" HorizontalAlignment="Left" Margin="616,34,0,0" VerticalAlignment="Top" Width="128" Height="45" Click="Konsultanti_Click" />
+        <Button x:Name="Ugovori" Content="Ugovori" HorizontalAlignment="Left" Margin="45,235,0,0" VerticalAlignment="Top" Width="130" Height="54" Click="Ugovori_Click"/>
         <Button x:Name="Kompanije" Content="Kompanije" HorizontalAlignment="Left" Margin="306,205,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Kompanije_Click" />
-        <Button x:Name="Lokacije" Content="Lokacije" HorizontalAlignment="Left" Margin="531,205,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Lokacije_Click"/>
-        <Button x:Name="Proizvodi" Content="Proizvodi" HorizontalAlignment="Left" Margin="306,303,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Proizvodi_Click"/>
+        <Button x:Name="Lokacije" Content="Lokacije" HorizontalAlignment="Left" Margin="306,311,0,0" VerticalAlignment="Top" Width="130" Height="53" Click="Lokacije_Click"/>
+        <Button x:Name="Proizvodi" Content="Proizvodi" HorizontalAlignment="Left" Margin="306,60,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Proizvodi_Click"/>
     </Grid>
 </Window>

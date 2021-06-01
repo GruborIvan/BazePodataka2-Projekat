@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BazeProjekatPokusaj2.CrudWindows"
         mc:Ignorable="d"
         Title="LokacijeWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="LightYellow">
         <StackPanel Orientation="Vertical">
             <GroupBox>
                 <Grid Height="70">
