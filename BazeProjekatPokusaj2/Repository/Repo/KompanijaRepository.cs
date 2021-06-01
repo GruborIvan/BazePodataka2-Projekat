@@ -26,12 +26,11 @@ namespace BazeProjekatPokusaj2.Repository.Repo
 
         public void DeleteKompanija(Kompanija kompanija)
         {
-            //Direktor d = db.Osobas.Where(x => x.OID == kompanija.Direktor.OID) as Direktor;
-            //d.Kompanija = null;
             Direktor d = kompanija.Direktor;
             kompanija.Direktor = null;
             db.Osobas.Remove(d);
-            db.SaveChanges();
+            kompanija.Lokacija = null;
+  
 
             db.Kompanije.Remove(kompanija);
             db.SaveChanges();
@@ -39,7 +38,15 @@ namespace BazeProjekatPokusaj2.Repository.Repo
 
         public IEnumerable<Osoba> GetDirektori()
         {
-            return db.Osobas.Where(x => x.OsobaType == "DIREKTOR");
+            List<Osoba> osobe = db.Osobas.Where(x => x.OsobaType == "DIREKTOR").ToList();
+            foreach(Kompanija k in db.Kompanije)
+            {
+                if (osobe.Find(x => x.OID == k.Direktor.OID) != null)
+                {
+                    osobe.Remove(osobe.Find(x => x.OID == k.Direktor.OID));
+                }
+            }
+            return osobe;
         }
 
         public Kompanija GetKompanijaById(int id)
@@ -54,7 +61,15 @@ namespace BazeProjekatPokusaj2.Repository.Repo
 
         public IEnumerable<Lokacija> GetLokacije()
         {
-            return db.Lokacije;
+            List<Lokacija> Lokacije = db.Lokacije.ToList();
+            foreach(Kompanija k in db.Kompanije)
+            {
+                if (Lokacije.Find(x => x.LokID == k.Lokacija.LokID) != null)
+                {
+                    Lokacije.Remove(Lokacije.Find(x => x.LokID == k.Lokacija.LokID));
+                }
+            }
+            return Lokacije;
         }
 
         public void UpdateKompanija(Kompanija kompanija)
