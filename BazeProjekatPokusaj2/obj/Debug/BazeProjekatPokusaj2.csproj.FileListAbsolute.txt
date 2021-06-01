@@ -45,3 +45,5 @@ D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\BazeProjekatPokus
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\BazeProjekatPokusaj2.exe
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\BazeProjekatPokusaj2.pdb
 D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\BazeProjekatPokusaj2.csprojAssemblyReference.cache
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\UgovoreniProizvodi.g.cs
+D:\GRAFIKA\BazeProjekatPokusaj2\BazeProjekatPokusaj2\obj\Debug\CrudWindows\UgovoreniProizvodi.baml

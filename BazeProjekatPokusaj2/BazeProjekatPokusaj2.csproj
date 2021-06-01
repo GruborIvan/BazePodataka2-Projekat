@@ -105,6 +105,9 @@
     <Compile Include="CrudWindows\LokacijeWindow.xaml.cs">
       <DependentUpon>LokacijeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CrudWindows\UgovoreniProizvodi.xaml.cs">
+      <DependentUpon>UgovoreniProizvodi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CrudWindows\UgovoriWindow.xaml.cs">
       <DependentUpon>UgovoriWindow.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,7 @@
     <Compile Include="Repository\Interfaces\IKompanijaRepository.cs" />
     <Compile Include="Repository\Interfaces\IKonsultantRepository.cs" />
     <Compile Include="Repository\Interfaces\ILokacijaRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUgovoreniProizvodRepository.cs" />
     <Compile Include="Repository\Interfaces\IUgovorRepository.cs" />
     <Compile Include="Repository\Repo\DeveloperRepository.cs" />
     <Compile Include="Repository\Repo\DirektorRepository.cs" />
@@ -142,6 +146,7 @@
     <Compile Include="Repository\Repo\KompanijaRepository.cs" />
     <Compile Include="Repository\Repo\KonsultantRepository.cs" />
     <Compile Include="Repository\Repo\LokacijaRepository.cs" />
+    <Compile Include="Repository\Repo\UgovoreniProizvodRepository.cs" />
     <Compile Include="Repository\Repo\UgovorRepository.cs" />
     <Compile Include="Ugovor.cs">
       <DependentUpon>CompanyDbModel.tt</DependentUpon>
@@ -173,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CrudWindows\LokacijeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CrudWindows\UgovoreniProizvodi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

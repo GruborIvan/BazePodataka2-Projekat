@@ -67,6 +67,12 @@ namespace BazeProjekatPokusaj2
             KlijentiWindow klijentiWindow = new KlijentiWindow();
             klijentiWindow.Show();
         }
+
+        private void Proizvodi_Click(object sender, RoutedEventArgs e)
+        {
+            UgovoreniProizvodi ugovoreniProizvodi = new UgovoreniProizvodi();
+            ugovoreniProizvodi.Show();
+        }
     }
    
 }

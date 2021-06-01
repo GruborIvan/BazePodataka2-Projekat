@@ -14,5 +14,6 @@
         <Button x:Name="Ugovori" Content="Ugovori" HorizontalAlignment="Left" Margin="81,205,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Ugovori_Click"/>
         <Button x:Name="Kompanije" Content="Kompanije" HorizontalAlignment="Left" Margin="306,205,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Kompanije_Click" />
         <Button x:Name="Lokacije" Content="Lokacije" HorizontalAlignment="Left" Margin="531,205,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Lokacije_Click"/>
+        <Button x:Name="Proizvodi" Content="Proizvodi" HorizontalAlignment="Left" Margin="306,303,0,0" VerticalAlignment="Top" Width="130" Height="70" Click="Proizvodi_Click"/>
     </Grid>
 </Window>
