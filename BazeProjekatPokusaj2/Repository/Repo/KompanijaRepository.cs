@@ -28,7 +28,7 @@ namespace BazeProjekatPokusaj2.Repository.Repo
         {
             Direktor d = kompanija.Direktor;
             kompanija.Direktor = null;
-            db.Osobas.Remove((Direktor)db.Osobas.Find(d.OID));
+            //db.Osobas.Remove((Direktor)db.Osobas.Find(d.OID));
             db.Lokacije.Remove(db.Lokacije.Find(kompanija.Lokacija.LokID));
             kompanija.Lokacija = null;
 
