@@ -28,7 +28,15 @@ namespace BazeProjekatPokusaj2.Repository.Repo
         public void DeleteLokacija(Lokacija lokacija)
         {
             IKompanijaRepository rep = new KompanijaRepository();
-            rep.DeleteKompanija(lokacija.Kompanija);
+            if (lokacija.Kompanija == null)
+            {
+                db.Lokacije.Remove(lokacija);
+                db.SaveChanges();
+            }
+            else
+            {
+                rep.DeleteKompanija(lokacija.Kompanija);
+            }
         }
 
         public Lokacija GetLokacijaById(int id)
