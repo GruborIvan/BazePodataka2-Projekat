@@ -93,6 +93,9 @@
     <Compile Include="CrudWindows\DirektoriWindow.xaml.cs">
       <DependentUpon>DirektoriWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CrudWindows\FunkcijePrewiew.xaml.cs">
+      <DependentUpon>FunkcijePrewiew.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CrudWindows\KlijentiWindow.xaml.cs">
       <DependentUpon>KlijentiWindow.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CrudWindows\DirektoriWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CrudWindows\FunkcijePrewiew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

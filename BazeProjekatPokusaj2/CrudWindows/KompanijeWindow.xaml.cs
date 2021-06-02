@@ -46,6 +46,9 @@ namespace BazeProjekatPokusaj2.CrudWindows
         private void LoadAllKompanije()
         {
             Kompanije = new BindingList<Kompanija>(_repository.GetKompanije().ToList());
+            Lokacije = new BindableCollection<Lokacija>(_repository.GetLokacije().ToList());
+            Direktori = new BindableCollection<Osoba>(_repository.GetDirektori().ToList());
+
             KompanijeList.ItemsSource = Kompanije;
             LokacijeComboBox.ItemsSource = Lokacije;
             DirektoriComboBox.ItemsSource = Direktori;

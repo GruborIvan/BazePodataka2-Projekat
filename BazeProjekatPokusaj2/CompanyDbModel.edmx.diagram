@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b1f69466f5ad4eb3a22c52e22dfd1db7" Name="Diagram1" ZoomLevel="68" >
+      <Diagram DiagramId="b1f69466f5ad4eb3a22c52e22dfd1db7" Name="Diagram1" ZoomLevel="75" >
         <EntityTypeShape EntityType="CompanyDbModel.Osoba" Width="1.5" PointX="2" PointY="0.5" />
         <EntityTypeShape EntityType="CompanyDbModel.Klijent" Width="1.75" PointX="0.5" PointY="3" />
         <InheritanceConnector EntityType="CompanyDbModel.Klijent" ManuallyRouted="false" >

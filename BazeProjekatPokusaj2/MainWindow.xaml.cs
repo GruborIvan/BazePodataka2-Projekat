@@ -73,6 +73,12 @@ namespace BazeProjekatPokusaj2
             UgovoreniProizvodi ugovoreniProizvodi = new UgovoreniProizvodi();
             ugovoreniProizvodi.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FunkcijePrewiew fpw = new FunkcijePrewiew();
+            fpw.Show();
+        }
     }
    
 }

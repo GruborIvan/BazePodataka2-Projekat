@@ -41,9 +41,10 @@ namespace BazeProjekatPokusaj2.Repository.Repo
             List<Osoba> osobe = db.Osobas.Where(x => x.OsobaType == "DIREKTOR").ToList();
             foreach(Kompanija k in db.Kompanije)
             {
-                if (osobe.Find(x => x.OID == k.Direktor.OID) != null)
+                Osoba o = osobe.Find(x => x.OID == k.Direktor.OID);
+                if (o != null)
                 {
-                    osobe.Remove(osobe.Find(x => x.OID == k.Direktor.OID));
+                    osobe.Remove(o);
                 }
             }
             return osobe;
