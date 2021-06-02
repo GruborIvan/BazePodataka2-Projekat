@@ -43,8 +43,15 @@ namespace BazeProjekatPokusaj2.Repository.Repo
                     db.UgovoreniProizvodi.Remove(up);
             }
             db.SaveChanges();
-            db.Osobas.Remove(konsultant);
-            db.SaveChanges();
+            db.Osobas.Remove(db.Osobas.Find(konsultant.OID));
+            try
+            {
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+
+            }
         }
 
         public Konsultant GetKonsultantById(int id)

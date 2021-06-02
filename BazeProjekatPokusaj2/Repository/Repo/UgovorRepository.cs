@@ -47,9 +47,9 @@ namespace BazeProjekatPokusaj2.Repository.Repo
                     }
                     else if (z.OsobaType.Equals("KONSULTANT"))
                     {
-                        // DELETE SVE IZ PRODUCTS TAMO...
-                        // PUCACE OVDE ZATO!!
-                        db.Osobas.Remove(o);
+                        IKonsultantRepository _repo = new KonsultantRepository();
+                        _repo.DeleteKonsultant((Konsultant)z);
+                        db.Osobas.Remove(z);
                         db.SaveChanges();
                     }
 
